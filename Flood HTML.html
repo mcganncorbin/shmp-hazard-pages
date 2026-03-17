@@ -1,0 +1,564 @@
+<section id="fl-flooding" aria-label="Flooding risk summary">
+  <style>
+    #fl-flooding{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #fl-flooding .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+    #fl-flooding .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(14,165,233,.08), rgba(255,255,255,0));
+    }
+    #fl-flooding h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;}
+    #fl-flooding h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #fl-flooding h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #fl-flooding .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+    #fl-flooding .section{margin-top:18px;}
+    #fl-flooding .subhazard{
+      margin-top:26px;
+      padding-top:8px;
+      border-top:1px solid rgba(15,23,42,.08);
+    }
+
+    #fl-flooding .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #fl-flooding .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+      #fl-flooding .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #fl-flooding .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #fl-flooding .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #fl-flooding .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+
+    #fl-flooding .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(14,165,233,.06), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+
+    #fl-flooding .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+
+    #fl-flooding .stat{font-size:22px;font-weight:800;margin:0 0 4px;}
+    #fl-flooding .statlabel{font-size:13px;color:rgba(31,41,55,.72);margin:0;}
+    #fl-flooding .note{font-size:12px;color:rgba(31,41,55,.68);margin-top:10px;line-height:1.5;}
+    #fl-flooding .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #fl-flooding .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #fl-flooding .impact-list li{margin:6px 0;}
+
+    #fl-flooding .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #fl-flooding img{width:100%;border-radius:14px;display:block;}
+
+    #fl-flooding details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #fl-flooding summary{cursor:pointer;font-weight:800;}
+
+    #fl-flooding .sr-only{
+      position:absolute !important;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+
+    #fl-flooding table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #fl-flooding caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #fl-flooding th, #fl-flooding td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #fl-flooding th{
+      background:rgba(239,246,255,.9);
+      text-align:left;
+    }
+
+    #fl-flooding .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #fl-flooding .tier .bar{height:5px;}
+    #fl-flooding .tier .body{padding:14px 16px;}
+    #fl-flooding .tier .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.70);
+      margin:0 0 6px;
+    }
+    #fl-flooding .tier h4{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    #fl-flooding .tier ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.55;
+    }
+    #fl-flooding .tier li{margin:3px 0;}
+    #fl-flooding .muted{color:rgba(31,41,55,.72);}
+
+    /* Flood color ramp */
+    #fl-flooding .hi .bar{background:#dc2626;}
+    #fl-flooding .mod .bar{background:#f97316;}
+    #fl-flooding .low .bar{background:#facc15;}
+    #fl-flooding .vlow .bar{background:#fde68a;}
+    #fl-flooding .na .bar{background:#cbd5e1;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Flooding</p>
+      <h1>Coastal and Inland Flood Risk Across Maryland</h1>
+      <p class="lede">
+        Flooding is one of Maryland’s most significant natural hazards. Risk patterns vary by geography, with
+        tidal and storm surge impacts affecting coastal communities and rainfall-driven riverine, flash, and
+        urban flooding affecting inland jurisdictions. The sections below summarize statewide flood risk using
+        FEMA National Risk Index data, paired with accessible map alternatives and county tier breakouts.
+      </p>
+    </div>
+
+    <!-- ============================= -->
+    <!-- COASTAL FLOODING -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="coastal-flooding-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Flooding Sub-Hazard</p>
+        <h2 id="coastal-flooding-title">Coastal Flooding <span class="pill">CFLD</span></h2>
+        <p class="lede">
+          Coastal flooding in Maryland is driven by tidal influences, storm surge, and long-term shoreline exposure
+          along the Chesapeake Bay and Atlantic coastline. Risk is generally highest in low-lying jurisdictions where
+          inundation affects developed waterfront areas, infrastructure, and evacuation routes.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Coastal Flooding</h3>
+
+        <div class="grid cols-4" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$27.65M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$27.19M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$457K</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">33.22</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland table. Fields:
+          <strong>CFLD_EALT</strong>, <strong>CFLD_EALB</strong>, <strong>CFLD_EALPE</strong>, and
+          <strong>CFLD_EXP_AREA</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How coastal flooding affects Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Repeated tidal inundation can damage roads, drainage systems, and shoreline infrastructure.</li>
+          <li>Storm surge and elevated water levels can threaten homes, businesses, and public facilities in low-lying areas.</li>
+          <li>Flooding along evacuation routes and access roads can disrupt emergency response and daily travel.</li>
+          <li>Saltwater intrusion and standing water can affect environmental resources, agricultural lands, and septic systems.</li>
+          <li>Recurring nuisance flooding can create cumulative economic losses even during less severe events.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/c0a603e914e4412fa3fe727cacf0e98f/data"
+            alt="Maryland county map showing Coastal Flooding risk categories. Relatively High: Dorchester, Somerset, Worcester. Relatively Moderate: Anne Arundel, Baltimore City, Baltimore County, Calvert, Kent, Queen Anne’s, St. Mary’s, Talbot. Relatively Low: Caroline, Cecil, Charles, Harford, Prince George’s, Wicomico. Very Low: Howard, Montgomery. Not Applicable: Allegany, Carroll, Frederick, Garrett, Washington."
+            aria-describedby="cfl-map-desc"
+          >
+
+          <div id="cfl-map-desc" class="sr-only">
+            Coastal Flooding Risk by County. Relatively High: Dorchester, Somerset, Worcester.
+            Relatively Moderate: Anne Arundel, Baltimore City, Baltimore County, Calvert, Kent,
+            Queen Anne’s, St. Mary’s, Talbot. Relatively Low: Caroline, Cecil, Charles, Harford,
+            Prince George’s, Wicomico. Very Low: Howard, Montgomery. Not Applicable: Allegany,
+            Carroll, Frederick, Garrett, Washington.
+          </div>
+
+          <p class="note">
+            Coastal Flooding Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Coastal Flooding.
+          </p>
+
+          <details aria-label="Accessible coastal flooding data table and download">
+            <summary>Accessible data table and download (Coastal Flooding)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Coastal Flooding risk category by county">
+                <caption>Coastal Flooding — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Dorchester; Somerset; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Anne Arundel; Baltimore City; Baltimore County; Calvert; Kent; Queen Anne’s; St. Mary’s; Talbot</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Caroline; Cecil; Charles; Harford; Prince George’s; Wicomico</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Very Low</th>
+                    <td>Howard; Montgomery</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Not Applicable</th>
+                    <td>Allegany; Carroll; Frederick; Garrett; Washington</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/a7efd57206674d50b87135d8250fd8d2/data">Flood risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Coastal Flooding tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Coastal Flooding county risk tiers">
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Highest coastal exposure</h4>
+              <ul>
+                <li>Dorchester</li>
+                <li>Somerset</li>
+                <li>Worcester</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Bay-adjacent counties with recurring tidal and surge impacts</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Baltimore City</li>
+                <li>Baltimore County</li>
+                <li>Calvert</li>
+                <li>Kent</li>
+                <li>Queen Anne’s</li>
+                <li>St. Mary’s</li>
+                <li>Talbot</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Lower Risk Pattern</p>
+              <h4>Lower exposure inland; some western counties are not applicable</h4>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Relatively Low:</strong> Caroline, Cecil, Charles, Harford, Prince George’s, Wicomico
+              </p>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Very Low:</strong> Howard, Montgomery
+              </p>
+              <p class="muted" style="margin:0;">
+                <strong>Not Applicable:</strong> Allegany, Carroll, Frederick, Garrett, Washington
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- INLAND FLOODING -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="inland-flooding-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Flooding Sub-Hazard</p>
+        <h2 id="inland-flooding-title">Inland Flooding <span class="pill">IFLD</span></h2>
+        <p class="lede">
+          Inland flooding in Maryland results from rainfall-driven processes, including riverine flooding, flash flooding,
+          and urban stormwater overflow. Risk is influenced by watershed conditions, land development patterns, impervious
+          surfaces, and the concentration of people and assets in flood-prone corridors.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Inland Flooding</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$492.29M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$466.19M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$24.18M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">20.71</p>
+            <p class="statlabel">Annualized Event Frequency</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">1,317.43</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland table. Fields:
+          <strong>IFLD_EALT</strong>, <strong>IFLD_EALB</strong>, <strong>IFLD_EALPE</strong>,
+          <strong>IFLD_EXP_AREA</strong>, and <strong>IFLD_EVNTS</strong>.
+          Annualized Event Frequency is computed as <strong>IFLD_EVNTS / 28</strong> for the 1996–2023 period of record.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How inland flooding affects Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Heavy rainfall can overwhelm streams, storm drains, and culverts, especially in developed and low-lying areas.</li>
+          <li>Flooding can damage homes, businesses, roads, bridges, and utility infrastructure.</li>
+          <li>Flash flooding can create life-safety risks with little warning, particularly near road crossings and urban drainage systems.</li>
+          <li>Repeated inland flooding can disrupt schools, emergency services, and local commerce.</li>
+          <li>Flood-prone development patterns can increase long-term recovery costs and cumulative property losses.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/cffef0f6fef040928db68b94203ea20b/data"
+            alt="Maryland county map showing Inland Flooding risk categories. Relatively High: Baltimore County, Montgomery, Prince George’s. Relatively Moderate: Anne Arundel, Baltimore City, Carroll, Frederick, Harford, Howard. Relatively Low: Allegany, Calvert, Cecil, Charles, Queen Anne’s, St. Mary’s, Washington, Wicomico, Worcester. Very Low: Caroline, Dorchester, Garrett, Kent, Somerset, Talbot."
+            aria-describedby="ifld-map-desc"
+          >
+
+          <div id="ifld-map-desc" class="sr-only">
+            Inland Flooding Risk by County. Relatively High: Baltimore County, Montgomery, Prince George’s.
+            Relatively Moderate: Anne Arundel, Baltimore City, Carroll, Frederick, Harford, Howard.
+            Relatively Low: Allegany, Calvert, Cecil, Charles, Queen Anne’s, St. Mary’s, Washington,
+            Wicomico, Worcester. Very Low: Caroline, Dorchester, Garrett, Kent, Somerset, Talbot.
+          </div>
+
+          <p class="note">
+            Inland Flooding Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Inland Flooding.
+          </p>
+
+          <details aria-label="Accessible inland flooding data table and download">
+            <summary>Accessible data table and download (Inland Flooding)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Inland Flooding risk category by county">
+                <caption>Inland Flooding — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Baltimore County; Montgomery; Prince George’s</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Anne Arundel; Baltimore City; Carroll; Frederick; Harford; Howard</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Allegany; Calvert; Cecil; Charles; Queen Anne’s; St. Mary’s; Washington; Wicomico; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Very Low</th>
+                    <td>Caroline; Dorchester; Garrett; Kent; Somerset; Talbot</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/a7efd57206674d50b87135d8250fd8d2/data">Flood risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Inland Flooding tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Inland Flooding county risk tiers">
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Highest modeled inland flood risk in major developed corridors</h4>
+              <ul>
+                <li>Baltimore County</li>
+                <li>Montgomery</li>
+                <li>Prince George’s</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Watershed exposure combined with concentrated development and infrastructure</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Baltimore City</li>
+                <li>Carroll</li>
+                <li>Frederick</li>
+                <li>Harford</li>
+                <li>Howard</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Low / Very Low</p>
+              <h4>Lower modeled losses outside the highest-risk inland corridors</h4>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Relatively Low:</strong> Allegany, Calvert, Cecil, Charles, Queen Anne’s, St. Mary’s, Washington, Wicomico, Worcester
+              </p>
+              <p class="muted" style="margin:0;">
+                <strong>Very Low:</strong> Caroline, Dorchester, Garrett, Kent, Somerset, Talbot
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Narrative -->
+    <div class="section">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p>
+            <strong>Coastal Flooding:</strong> Coastal flooding risk in Maryland is associated with tidal flooding,
+            storm surge, and shoreline exposure along the Chesapeake Bay and Atlantic coast. Relative risk is shaped
+            by the presence of low-lying developed areas, exposure of structures and infrastructure, and the frequency
+            of water level impacts.
+          </p>
+
+          <p>
+            <strong>Inland Flooding:</strong> Inland flooding risk is associated with riverine systems, flash flooding,
+            and rainfall-driven stormwater impacts. Relative risk is generally highest in areas where flood exposure overlaps
+            with dense development, transportation networks, and vulnerable built assets.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland table. Coastal Flood fields use the
+            <strong>CFLD_*</strong> series and Inland Flood fields use the <strong>IFLD_*</strong> series.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

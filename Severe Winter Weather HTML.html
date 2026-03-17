@@ -1,0 +1,571 @@
+<section id="sww" aria-label="Severe Winter Weather risk summary">
+  <style>
+    #sww{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #sww .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+
+    /* Hero */
+    #sww .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(14,165,233,.08), rgba(255,255,255,0));
+    }
+    #sww h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;line-height:1.15;}
+    #sww h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #sww h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #sww .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+
+    #sww .section{margin-top:18px;}
+    #sww .subhazard{
+      margin-top:26px;
+      padding-top:8px;
+      border-top:1px solid rgba(15,23,42,.08);
+    }
+
+    #sww .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #sww .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+      #sww .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #sww .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #sww .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #sww .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #sww .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(14,165,233,.06), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+    #sww .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+    #sww .stat{font-size:22px;font-weight:800;margin:0 0 4px;}
+    #sww .statlabel{font-size:13px;color:rgba(31,41,55,.72);margin:0;}
+    #sww .note{font-size:12px;color:rgba(31,41,55,.68);margin-top:10px;line-height:1.5;}
+    #sww .muted{color:rgba(31,41,55,.72);}
+    #sww .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #sww .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #sww .impact-list li{margin:6px 0;}
+
+    #sww .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #sww img{width:100%;border-radius:14px;display:block;height:auto;}
+
+    #sww details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #sww summary{cursor:pointer;font-weight:800;}
+
+    #sww .sr-only{
+      position:absolute !important;
+      width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
+
+    #sww table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #sww caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #sww th, #sww td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #sww th{
+      background:rgba(248,250,252,.9);
+      text-align:left;
+    }
+
+    #sww .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #sww .tier .bar{height:5px;}
+    #sww .tier .body{padding:14px 16px;}
+    #sww .tier .label{
+      font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+      color:rgba(31,41,55,.70);margin:0 0 6px;
+    }
+    #sww .tier h4{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    #sww .tier ul{margin:0;padding-left:18px;line-height:1.55;}
+    #sww .tier li{margin:3px 0;}
+
+    /* Tier colors */
+    #sww .veryhi .bar{background:#7f1d1d;}
+    #sww .hi .bar{background:#ef4444;}
+    #sww .mod .bar{background:#fb923c;}
+    #sww .low .bar{background:#fbbf24;}
+    #sww .vlow .bar{background:#fde68a;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Severe Winter Weather</p>
+      <h1>Severe Winter Weather Risk Across Maryland</h1>
+      <p class="lede">
+        Severe winter weather risk in Maryland includes both broader winter weather conditions and ice storm impacts.
+        FEMA’s National Risk Index evaluates these hazards separately, and the sections below summarize statewide
+        modeled annualized impacts, county-level relative risk patterns, accessible data tables, and tier interpretations
+        aligned to the updated map categories.
+      </p>
+    </div>
+
+    <!-- ============================= -->
+    <!-- WINTER WEATHER -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="ww-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Severe Winter Weather Sub-Hazard</p>
+        <h2 id="ww-title">Winter Weather <span class="pill">WNTW</span></h2>
+        <p class="lede">
+          Winter weather risk reflects the combined impacts of snow, sleet, freezing conditions, and related disruptions
+          to transportation, utilities, public safety, and daily operations. Relative risk is higher in counties where
+          winter storms overlap with denser populations, infrastructure, and greater modeled annualized losses.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Winter Weather</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$14.03M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$1.24M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$12.79M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$699</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI) v1.20.0 (December 2025), Maryland NRI table.
+          Fields: <strong>WNTW_EALT</strong>, <strong>WNTW_EALB</strong>, <strong>WNTW_EALPE</strong>,
+          <strong>WNTW_EALA</strong>, and <strong>WNTW_EXP_AREA</strong>. Event Count (<strong>WNTW_EVNTS</strong>) = 892.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card" aria-label="Winter Weather key impacts">
+        <p class="kicker">Key Impacts</p>
+        <h3>How winter weather affects Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Snow and ice reduce road traction and visibility, increasing crash risk and slowing emergency response.</li>
+          <li>Heavy snow and ice can damage trees and overhead lines, contributing to outages and restoration needs.</li>
+          <li>Public facilities, schools, and businesses may close or delay operations during significant events.</li>
+          <li>Winter maintenance, plowing, salting, and fleet operations increase public-sector costs and equipment strain.</li>
+          <li>Extended cold and storm conditions can increase demand for sheltering, warming resources, and public information.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/da6f77b6f0b045988457b4df1ca2c76c/data"
+            alt="Maryland county map showing Winter Weather risk categories. Very High: Anne Arundel, Baltimore, Baltimore City, Harford, Montgomery, Prince George’s. Relatively High: Carroll, Cecil, Frederick, Howard. Relatively Moderate: Allegany, Calvert, Caroline, Charles, Garrett, Queen Anne’s, St. Mary’s, Talbot, Washington, Wicomico, Worcester. Relatively Low: Dorchester, Kent, Somerset."
+            aria-describedby="ww-map-desc"
+            loading="lazy"
+          >
+
+          <div id="ww-map-desc" class="sr-only">
+            Winter Weather Risk by County. Very High: Anne Arundel, Baltimore, Baltimore City, Harford,
+            Montgomery, Prince George’s. Relatively High: Carroll, Cecil, Frederick, Howard.
+            Relatively Moderate: Allegany, Calvert, Caroline, Charles, Garrett, Queen Anne’s, St. Mary’s,
+            Talbot, Washington, Wicomico, Worcester. Relatively Low: Dorchester, Kent, Somerset.
+          </div>
+
+          <p class="note">
+            Winter Weather Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Winter Weather.
+          </p>
+
+          <details aria-label="Accessible Winter Weather data table and download">
+            <summary>Accessible data table and download (Winter Weather)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Winter Weather risk category by county">
+                <caption>Winter Weather — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Very High</th>
+                    <td>Anne Arundel; Baltimore; Baltimore City; Harford; Montgomery; Prince George’s</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Carroll; Cecil; Frederick; Howard</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Allegany; Calvert; Caroline; Charles; Garrett; Queen Anne’s; St. Mary’s; Talbot; Washington; Wicomico; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Dorchester; Kent; Somerset</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/c39c0e940d1a4eb390850072d188ed07/data">Severe winter weather risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Winter Weather tier interpretation</h3>
+
+        <div class="grid cols-3" aria-label="Winter Weather county risk tiers">
+          <div class="tier veryhi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Very High</p>
+              <h4>Highest modeled winter weather risk in central Maryland</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Baltimore</li>
+                <li>Baltimore City</li>
+                <li>Harford</li>
+                <li>Montgomery</li>
+                <li>Prince George’s</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Elevated impacts across the north-central corridor</h4>
+              <ul>
+                <li>Carroll</li>
+                <li>Cecil</li>
+                <li>Frederick</li>
+                <li>Howard</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate / Relatively Low</p>
+              <h4>Lower modeled losses outside the highest-risk winter weather counties</h4>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Relatively Moderate:</strong> Allegany, Calvert, Caroline, Charles, Garrett, Queen Anne’s, St. Mary’s, Talbot, Washington, Wicomico, Worcester
+              </p>
+              <p class="muted" style="margin:0;">
+                <strong>Relatively Low:</strong> Dorchester, Kent, Somerset
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- ICE STORM -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="is-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Severe Winter Weather Sub-Hazard</p>
+        <h2 id="is-title">Ice Storm <span class="pill">ISTM</span></h2>
+        <p class="lede">
+          Ice storm risk reflects the impacts of freezing rain and ice accumulation on power systems, trees,
+          transportation, critical facilities, and public safety. Even where overall modeled losses are lower
+          than broad winter weather impacts, ice storms can produce severe localized disruption and prolonged outages.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Ice Storm</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$3.25M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$1.82M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$1.43M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">41</p>
+            <p class="statlabel">Event Count (NRI)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI) v1.20.0 (December 2025), Maryland NRI table.
+          Fields: <strong>ISTM_EALT</strong>, <strong>ISTM_EALB</strong>, <strong>ISTM_EALPE</strong>,
+          <strong>ISTM_EVNTS</strong>, and <strong>ISTM_EXP_AREA</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card" aria-label="Ice Storm key impacts">
+        <p class="kicker">Key Impacts</p>
+        <h3>How ice storms affect Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Freezing rain accumulates on power lines and trees, producing outages and cascading service disruptions.</li>
+          <li>Ice loading breaks limbs and brings down trees, blocking roads and damaging structures and vehicles.</li>
+          <li>Critical facilities may face increased backup power needs during prolonged outages.</li>
+          <li>Heating interruptions and limited mobility can elevate health and safety risks during winter conditions.</li>
+          <li>Even moderate ice accumulation can create significant road hazards and delay recovery operations.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/ce93dcd9ec6449c7a6f06be528a81d34/data"
+            alt="Maryland county map showing Ice Storm risk categories. Relatively Moderate: Anne Arundel, Baltimore, Baltimore City, Cecil, Frederick, Harford, Howard, Montgomery, Prince George’s, St. Mary’s, Wicomico. Relatively Low: Allegany, Calvert, Carroll, Charles, Caroline, Dorchester, Kent, Queen Anne’s, Somerset, Talbot, Washington, Worcester. Very Low: Garrett."
+            aria-describedby="is-map-desc"
+            loading="lazy"
+          >
+
+          <div id="is-map-desc" class="sr-only">
+            Ice Storm Risk by County. Relatively Moderate: Anne Arundel, Baltimore, Baltimore City, Cecil,
+            Frederick, Harford, Howard, Montgomery, Prince George’s, St. Mary’s, Wicomico.
+            Relatively Low: Allegany, Calvert, Carroll, Charles, Caroline, Dorchester, Kent, Queen Anne’s,
+            Somerset, Talbot, Washington, Worcester. Very Low: Garrett.
+          </div>
+
+          <p class="note">
+            Ice Storm Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Ice Storm.
+          </p>
+
+          <details aria-label="Accessible Ice Storm data table and download">
+            <summary>Accessible data table and download (Ice Storm)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Ice Storm risk category by county">
+                <caption>Ice Storm — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Anne Arundel; Baltimore; Baltimore City; Cecil; Frederick; Harford; Howard; Montgomery; Prince George’s; St. Mary’s; Wicomico</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Allegany; Calvert; Carroll; Charles; Caroline; Dorchester; Kent; Queen Anne’s; Somerset; Talbot; Washington; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Very Low</th>
+                    <td>Garrett</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/c39c0e940d1a4eb390850072d188ed07/data">Severe winter weather risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Ice Storm tier interpretation</h3>
+
+        <div class="grid cols-3" aria-label="Ice Storm county risk tiers">
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Regular freezing-rain and mixed-precipitation impacts in more exposed counties</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Baltimore</li>
+                <li>Baltimore City</li>
+                <li>Cecil</li>
+                <li>Frederick</li>
+                <li>Harford</li>
+                <li>Howard</li>
+                <li>Montgomery</li>
+                <li>Prince George’s</li>
+                <li>St. Mary’s</li>
+                <li>Wicomico</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Low</p>
+              <h4>Lower modeled losses across much of the state</h4>
+              <ul>
+                <li>Allegany</li>
+                <li>Calvert</li>
+                <li>Carroll</li>
+                <li>Charles</li>
+                <li>Caroline</li>
+                <li>Dorchester</li>
+                <li>Kent</li>
+                <li>Queen Anne’s</li>
+                <li>Somerset</li>
+                <li>Talbot</li>
+                <li>Washington</li>
+                <li>Worcester</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier vlow">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Very Low</p>
+              <h4>Lowest category on the FEMA relative scale</h4>
+              <ul>
+                <li>Garrett</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL NARRATIVE -->
+    <div class="section" aria-label="Full narrative">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p class="note" style="margin-top:0;">
+            FEMA-aligned framing: NRI metrics represent modeled annualized estimates derived from hazard frequency,
+            exposure, and loss ratios. Statewide totals shown on this page use the Maryland NRI table
+            (county-level data aggregated to state).
+          </p>
+
+          <p>
+            <strong>Winter Weather:</strong> Higher relative winter weather risk is concentrated in central Maryland,
+            where population density and concentrations of structures increase modeled annual losses. In the
+            county table, Cecil is categorized as relatively high along with Carroll, Frederick, and Howard, while
+            Anne Arundel, Baltimore, Baltimore City, Harford, Montgomery, and Prince George’s are categorized as very high.
+          </p>
+
+          <p>
+            <strong>Ice Storm:</strong> Ice storm risk is categorized as relatively moderate across a set of more exposed
+            counties in central Maryland and portions of the Eastern Shore and Southern Maryland. In the county
+            table, Cecil is included in the relatively moderate category alongside Anne Arundel, Baltimore, Baltimore City,
+            Frederick, Harford, Howard, Montgomery, Prince George’s, St. Mary’s, and Wicomico. Garrett County is categorized
+            as very low.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI) v1.20.0 (December 2025). Metrics shown include
+            Winter Weather (<strong>WNTW_*</strong>) and Ice Storm (<strong>ISTM_*</strong>) Expected Annual Loss
+            totals and component fields, along with county relative risk ratings.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

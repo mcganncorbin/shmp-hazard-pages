@@ -1,0 +1,401 @@
+<section id="eq-earthquake" aria-label="Earthquake risk summary">
+  <style>
+    #eq-earthquake{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #eq-earthquake .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+    #eq-earthquake .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(34,197,94,.08), rgba(255,255,255,0));
+    }
+    #eq-earthquake h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;line-height:1.15;}
+    #eq-earthquake h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #eq-earthquake h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #eq-earthquake .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+    #eq-earthquake .section{margin-top:18px;}
+
+    #eq-earthquake .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #eq-earthquake .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #eq-earthquake .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #eq-earthquake .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #eq-earthquake .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #eq-earthquake .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(34,197,94,.06), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+    #eq-earthquake .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+    #eq-earthquake .stat{
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:-.01em;
+      margin:0 0 4px;
+    }
+    #eq-earthquake .statlabel{
+      margin:0;
+      font-size:13px;
+      line-height:1.4;
+      color:rgba(31,41,55,.72);
+    }
+    #eq-earthquake .note{
+      font-size:12px;
+      color:rgba(31,41,55,.68);
+      margin-top:10px;
+      line-height:1.5;
+    }
+    #eq-earthquake .muted{color:rgba(31,41,55,.72);}
+    #eq-earthquake .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #eq-earthquake .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #eq-earthquake .impact-list li{margin:6px 0;}
+
+    #eq-earthquake .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:18px;
+      padding:12px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #eq-earthquake img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+    }
+
+    #eq-earthquake details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #eq-earthquake summary{cursor:pointer;font-weight:800;}
+    #eq-earthquake summary::-webkit-details-marker{display:none;}
+
+    #eq-earthquake .sr-only{
+      position:absolute !important;
+      width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
+
+    #eq-earthquake table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #eq-earthquake caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #eq-earthquake th, #eq-earthquake td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #eq-earthquake th{
+      background:rgba(248,250,252,.9);
+      text-align:left;
+    }
+
+    #eq-earthquake .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #eq-earthquake .tier .bar{height:5px;}
+    #eq-earthquake .tier .body{padding:14px 16px;}
+    #eq-earthquake .tier .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.70);
+      margin:0 0 6px;
+    }
+    #eq-earthquake .tier h4{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    #eq-earthquake .tier ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.55;
+    }
+    #eq-earthquake .tier li{margin:3px 0;}
+
+    /* Earthquake tier colors */
+    #eq-earthquake .mod .bar{background:#f97316;}
+    #eq-earthquake .low .bar{background:#eab308;}
+    #eq-earthquake .vlow .bar{background:#fde68a;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Earthquake</p>
+      <h1>Earthquake Risk Across Maryland</h1>
+      <p class="lede">
+        Maryland’s modeled earthquake risk is very low overall. Differences in county risk ratings are driven less by earthquake
+        frequency and more by exposure, including population density, building concentration, and potential economic loss if an event occurs.
+      </p>
+    </div>
+
+    <!-- HAZARD INTRO -->
+    <div class="section">
+      <div class="subhazard-head">
+        <p class="kicker">Earthquake Hazard</p>
+        <h2>Earthquake <span class="pill">ERQK</span></h2>
+        <p class="lede">
+          Although damaging earthquakes are infrequent in Maryland, even a lower-probability event can produce notable losses where
+          people, buildings, transportation systems, and critical facilities are concentrated. Relative risk varies across counties
+          primarily because exposure is higher in central Maryland than in more rural parts of the state.
+        </p>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="section">
+      <div class="card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Earthquake</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$7.89M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$6.17M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$1.72M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">0.01</p>
+            <p class="statlabel">Annualized Event Frequency</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland county table. Fields:
+          <strong>ERQK_EALT</strong>, <strong>ERQK_EALB</strong>, <strong>ERQK_EALPE</strong>,
+          <strong>ERQK_AFREQ</strong>, and <strong>ERQK_EXP_AREA</strong>.
+        </p>
+
+        <p class="note">
+          Exposure Area reflects the FEMA National Risk Index reported exposure area field. NRI exposure area values may include jurisdictional
+          water area and/or modeled hazard extent.
+        </p>
+      </div>
+    </div>
+
+    <!-- KEY IMPACTS -->
+    <div class="section card" aria-label="Earthquake key impacts">
+      <p class="kicker">Key Impacts</p>
+      <h3>How earthquake conditions could affect Maryland communities</h3>
+      <ul class="impact-list">
+        <li>Even moderate shaking can damage older buildings, unreinforced masonry, and non-structural building components.</li>
+        <li>Earthquake impacts can disrupt bridges, utilities, communications networks, and water systems.</li>
+        <li>Repair needs and downtime can interrupt commerce, government operations, and essential public services.</li>
+        <li>Public safety risk tends to increase where more residents, workers, and critical facilities are concentrated in the same area.</li>
+        <li>Although statewide frequency is low, losses can still be significant where shaking affects densely developed counties.</li>
+      </ul>
+    </div>
+
+    <!-- MAP + ADA -->
+    <div class="section" aria-label="Earthquake risk map">
+      <div class="mapbox">
+        <img
+          src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/907fe0a0859447e680e93aecbbdc3317/data"
+          alt="Maryland county map showing Earthquake risk categories. Relatively Moderate: Anne Arundel, Baltimore County, Baltimore City, Montgomery, Prince George’s. Relatively Low: Calvert, Carroll, Cecil, Charles, Dorchester, Frederick, Harford, Howard, Queen Anne’s, St. Mary’s, Talbot, Washington, Wicomico. Very Low: Allegany, Caroline, Garrett, Kent, Somerset, Worcester."
+          aria-describedby="eq-map-desc"
+          loading="lazy"
+        >
+
+        <div id="eq-map-desc" class="sr-only">
+          Earthquake Risk by County. Relatively Moderate: Anne Arundel, Baltimore County, Baltimore City, Montgomery, Prince George’s.
+          Relatively Low: Calvert, Carroll, Cecil, Charles, Dorchester, Frederick, Harford, Howard, Queen Anne’s, St. Mary’s, Talbot, Washington, Wicomico.
+          Very Low: Allegany, Caroline, Garrett, Kent, Somerset, Worcester.
+        </div>
+
+        <p class="note">
+          Earthquake Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Earthquake.
+        </p>
+
+        <details aria-label="Accessible earthquake risk data table and download">
+          <summary>Accessible data table and download (Earthquake)</summary>
+          <div style="margin-top:10px;">
+            <p class="note" style="margin-top:0;">
+              This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+            </p>
+
+            <table aria-label="Earthquake risk category by county">
+              <caption>Earthquake — Risk Category by County</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Risk Category</th>
+                  <th scope="col">Counties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Relatively Moderate</th>
+                  <td>Anne Arundel; Baltimore County; Baltimore City; Montgomery; Prince George’s</td>
+                </tr>
+                <tr>
+                  <th scope="row">Relatively Low</th>
+                  <td>Calvert; Carroll; Cecil; Charles; Dorchester; Frederick; Harford; Howard; Queen Anne’s; St. Mary’s; Talbot; Washington; Wicomico</td>
+                </tr>
+                <tr>
+                  <th scope="row">Very Low</th>
+                  <td>Allegany; Caroline; Garrett; Kent; Somerset; Worcester</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="note">
+              Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/a633a3df9bf44d21b53ed8e3a4260ecc/data">Earthquake risk table by county</a>
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- TIER EXPLANATION -->
+    <div class="section">
+      <p class="kicker">Risk Tiers</p>
+      <h3>Earthquake tier interpretation</h3>
+
+      <div class="grid cols-3" aria-label="Earthquake risk tiers">
+        <div class="tier mod">
+          <div class="bar"></div>
+          <div class="body">
+            <p class="label">Relatively Moderate</p>
+            <h4>Higher modeled earthquake risk in central Maryland</h4>
+            <ul>
+              <li>Anne Arundel</li>
+              <li>Baltimore County</li>
+              <li>Baltimore City</li>
+              <li>Montgomery</li>
+              <li>Prince George’s</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tier low">
+          <div class="bar"></div>
+          <div class="body">
+            <p class="label">Relatively Low</p>
+            <h4>Lower modeled risk across much of the state</h4>
+            <ul>
+              <li>Calvert</li>
+              <li>Carroll</li>
+              <li>Cecil</li>
+              <li>Charles</li>
+              <li>Dorchester</li>
+              <li>Frederick</li>
+              <li>Harford</li>
+              <li>Howard</li>
+              <li>Queen Anne’s</li>
+              <li>St. Mary’s</li>
+              <li>Talbot</li>
+              <li>Washington</li>
+              <li>Wicomico</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tier vlow">
+          <div class="bar"></div>
+          <div class="body">
+            <p class="label">Very Low</p>
+            <h4>Lowest modeled risk in parts of Western Maryland and the Eastern Shore</h4>
+            <ul>
+              <li>Allegany</li>
+              <li>Caroline</li>
+              <li>Garrett</li>
+              <li>Kent</li>
+              <li>Somerset</li>
+              <li>Worcester</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL NARRATIVE -->
+    <div class="section" aria-label="Full narrative">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p>
+            <strong>Earthquake:</strong> Maryland has a very low overall earthquake risk, but county differences in relative risk are influenced
+            primarily by exposure rather than hazard frequency alone. Counties categorized as relatively moderate are concentrated in central Maryland,
+            including Anne Arundel, Baltimore County, Baltimore City, Montgomery, and Prince George’s, where population, building inventory, and
+            economic exposure are greater.
+          </p>
+
+          <p>
+            Counties categorized as relatively low cover much of the state and generally reflect lower modeled losses and less concentrated exposure.
+            The very low category is concentrated in parts of Western Maryland and the Eastern Shore, where overall exposure is lower relative to
+            central Maryland.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland county table. Metrics shown include Earthquake
+            (<strong>ERQK_*</strong>) Expected Annual Loss totals and component fields, county relative risk ratings,
+            and exposure area.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,345 @@
+<section id="wf-wildfire" aria-label="Wildfire risk summary">
+  <style>
+    #wf-wildfire{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #wf-wildfire .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+    #wf-wildfire .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(245,158,11,.10), rgba(255,255,255,0));
+    }
+    #wf-wildfire h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;}
+    #wf-wildfire h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #wf-wildfire h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #wf-wildfire h4{margin:0 0 10px;font-size:18px;letter-spacing:-.01em;}
+    #wf-wildfire .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+    #wf-wildfire .section{margin-top:18px;}
+
+    #wf-wildfire .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #wf-wildfire .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+      #wf-wildfire .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #wf-wildfire .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #wf-wildfire .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #wf-wildfire .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+
+    #wf-wildfire .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(245,158,11,.08), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+
+    #wf-wildfire .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+
+    #wf-wildfire .stat{font-size:22px;font-weight:800;margin:0 0 4px;}
+    #wf-wildfire .statlabel{font-size:13px;color:rgba(31,41,55,.72);margin:0;}
+    #wf-wildfire .note{font-size:12px;color:rgba(31,41,55,.68);margin-top:10px;line-height:1.5;}
+    #wf-wildfire .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #wf-wildfire .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #wf-wildfire .impact-list li{margin:6px 0;}
+
+    #wf-wildfire .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #wf-wildfire img{width:100%;border-radius:14px;display:block;}
+
+    #wf-wildfire details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #wf-wildfire summary{cursor:pointer;font-weight:800;}
+
+    #wf-wildfire .sr-only{
+      position:absolute !important;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+
+    #wf-wildfire table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #wf-wildfire caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #wf-wildfire th, #wf-wildfire td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #wf-wildfire th{
+      background:rgba(255,247,237,.96);
+      text-align:left;
+    }
+
+    #wf-wildfire .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #wf-wildfire .tier .bar{height:5px;}
+    #wf-wildfire .tier .body{padding:14px 16px;}
+    #wf-wildfire .tier .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.70);
+      margin:0 0 6px;
+    }
+    #wf-wildfire .tier ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.55;
+    }
+    #wf-wildfire .tier li{margin:3px 0;}
+    #wf-wildfire .muted{color:rgba(31,41,55,.72);}
+
+    /* Wildfire color ramp */
+    #wf-wildfire .low .bar{background:#f2c75c;}
+    #wf-wildfire .vlow .bar{background:#ececab;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Wildfire</p>
+      <h1>Wildfire Risk Across Maryland</h1>
+      <p class="lede">
+        Wildfire risk in Maryland is generally lower than many other natural hazards, but it still affects parts of the state
+        through vegetation fires, smoke, localized threats to structures, and potential impacts to utilities, transportation,
+        and emergency response access. The information below summarizes statewide FEMA National Risk Index metrics and the
+        county-level relative risk pattern shown in the wildfire map.
+      </p>
+    </div>
+
+    <div class="section" aria-labelledby="wildfire-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Hazard</p>
+        <h2 id="wildfire-title">Wildfire <span class="pill">WFIR</span></h2>
+        <p class="lede">
+          FEMA’s National Risk Index evaluates wildfire risk using modeled expected annual losses and exposure metrics.
+          In Maryland, wildfire risk is concentrated more in counties where vegetation, open land, and rural development
+          patterns create greater opportunity for localized fire spread, while many more urbanized counties remain in the
+          very low tier.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Wildfire</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$2.54M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$2.20M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$333.56K</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$10.41K</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">547.01</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland statewide table. Fields:
+          <strong>WFIR_EALT</strong>, <strong>WFIR_EALB</strong>, <strong>WFIR_EALPE</strong>,
+          <strong>WFIR_EALA</strong>, and <strong>WFIR_EXP_AREA</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How wildfire affects Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Wildfires can threaten homes, outbuildings, and infrastructure where development is near wooded or brush-covered areas.</li>
+          <li>Smoke can reduce air quality, affect public health, and disrupt outdoor work, recreation, and travel.</li>
+          <li>Fires can damage utility corridors, fencing, natural resources, and transportation access routes.</li>
+          <li>Suppression needs can strain emergency response resources, especially during dry and windy conditions.</li>
+          <li>Even where statewide risk is relatively low, localized wildland-urban interface areas can still experience meaningful impacts.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/6421b7422e2a4992a0e96863798f858b/data"
+            alt="Maryland county map showing Wildfire risk categories. Relatively Low: Calvert, Caroline, Dorchester, Queen Anne’s, Somerset, St. Mary’s, Talbot, Wicomico, Worcester. Very Low: Allegany, Anne Arundel, Baltimore, Baltimore City, Carroll, Cecil, Charles, Frederick, Garrett, Harford, Howard, Kent, Montgomery, Prince George’s, Washington."
+            aria-describedby="wfir-map-desc"
+          >
+
+          <div id="wfir-map-desc" class="sr-only">
+            Wildfire risk by county. Relatively Low: Calvert, Caroline, Dorchester, Queen Anne’s,
+            Somerset, St. Mary’s, Talbot, Wicomico, Worcester. Very Low: Allegany, Anne Arundel,
+            Baltimore, Baltimore City, Carroll, Cecil, Charles, Frederick, Garrett, Harford,
+            Howard, Kent, Montgomery, Prince George’s, Washington.
+          </div>
+
+          <p class="note">
+            Wildfire Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Wildfire.
+          </p>
+
+          <details aria-label="Accessible wildfire data table and download">
+            <summary>Accessible data table and download (Wildfire)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Wildfire risk category by county">
+                <caption>Wildfire — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Calvert; Caroline; Dorchester; Queen Anne’s; Somerset; St. Mary’s; Talbot; Wicomico; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Very Low</th>
+                    <td>Allegany; Anne Arundel; Baltimore; Baltimore City; Carroll; Cecil; Charles; Frederick; Garrett; Harford; Howard; Kent; Montgomery; Prince George’s; Washington</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/11cf7e64a9d547e094fe7751223a3cd0/data">Wildfire risk table by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Wildfire tier interpretation</h3>
+        <div class="grid cols-2" aria-label="Wildfire county risk tiers">
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Low</p>
+              <h4>Higher wildfire exposure in parts of Southern Maryland and the Eastern Shore</h4>
+              <ul>
+                <li>Calvert</li>
+                <li>Caroline</li>
+                <li>Dorchester</li>
+                <li>Queen Anne’s</li>
+                <li>Somerset</li>
+                <li>St. Mary’s</li>
+                <li>Talbot</li>
+                <li>Wicomico</li>
+                <li>Worcester</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier vlow">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Very Low</p>
+              <h4>Lower modeled wildfire losses across most other Maryland counties</h4>
+              <p class="muted" style="margin:0;">
+                <strong>Very Low:</strong> Allegany, Anne Arundel, Baltimore, Baltimore City, Carroll, Cecil, Charles, Frederick, Garrett, Harford, Howard, Kent, Montgomery, Prince George’s, Washington
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Narrative -->
+    <div class="section">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p>
+            <strong>Wildfire:</strong> Wildfire risk in Maryland remains comparatively low statewide on the FEMA National Risk Index scale,
+            with counties falling into either relatively low or very low categories in the current map pattern. The relatively low tier is
+            concentrated in parts of Southern Maryland and the Eastern Shore, where vegetation, rural land cover, and development patterns
+            can create greater wildfire exposure than in more urbanized counties.
+          </p>
+
+          <p>
+            Counties in the very low tier still face the possibility of brush fires, woods fires, and localized smoke impacts, but modeled
+            annualized losses are lower than in the relatively low counties. Even so, periods of drought, high winds, and dry fuels can still
+            increase wildfire potential in localized areas.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland statewide table and county relative risk categories.
+            Metrics shown use the <strong>WFIR_*</strong> field series.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

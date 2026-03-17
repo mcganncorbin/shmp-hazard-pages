@@ -1,0 +1,380 @@
+<section id="ts-tropical-systems" aria-label="Tropical Systems risk summary">
+  <style>
+    #ts-tropical-systems{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #ts-tropical-systems .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+    #ts-tropical-systems .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(239,68,68,.08), rgba(255,255,255,0));
+    }
+    #ts-tropical-systems h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;}
+    #ts-tropical-systems h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #ts-tropical-systems h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #ts-tropical-systems h4{margin:0 0 10px;font-size:18px;letter-spacing:-.01em;}
+    #ts-tropical-systems .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+    #ts-tropical-systems .section{margin-top:18px;}
+
+    #ts-tropical-systems .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #ts-tropical-systems .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+      #ts-tropical-systems .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #ts-tropical-systems .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #ts-tropical-systems .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #ts-tropical-systems .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+
+    #ts-tropical-systems .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(239,68,68,.06), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+
+    #ts-tropical-systems .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+
+    #ts-tropical-systems .stat{font-size:22px;font-weight:800;margin:0 0 4px;}
+    #ts-tropical-systems .statlabel{font-size:13px;color:rgba(31,41,55,.72);margin:0;}
+    #ts-tropical-systems .note{font-size:12px;color:rgba(31,41,55,.68);margin-top:10px;line-height:1.5;}
+    #ts-tropical-systems .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #ts-tropical-systems .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #ts-tropical-systems .impact-list li{margin:6px 0;}
+
+    #ts-tropical-systems .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #ts-tropical-systems img{width:100%;border-radius:14px;display:block;}
+
+    #ts-tropical-systems details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #ts-tropical-systems summary{cursor:pointer;font-weight:800;}
+
+    #ts-tropical-systems .sr-only{
+      position:absolute !important;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+
+    #ts-tropical-systems table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #ts-tropical-systems caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #ts-tropical-systems th, #ts-tropical-systems td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #ts-tropical-systems th{
+      background:rgba(254,242,242,.96);
+      text-align:left;
+    }
+
+    #ts-tropical-systems .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #ts-tropical-systems .tier .bar{height:5px;}
+    #ts-tropical-systems .tier .body{padding:14px 16px;}
+    #ts-tropical-systems .tier .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.70);
+      margin:0 0 6px;
+    }
+    #ts-tropical-systems .tier ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.55;
+    }
+    #ts-tropical-systems .tier li{margin:3px 0;}
+    #ts-tropical-systems .muted{color:rgba(31,41,55,.72);}
+
+    /* Tropical systems color ramp */
+    #ts-tropical-systems .hi .bar{background:#ef4444;}
+    #ts-tropical-systems .mod .bar{background:#fb923c;}
+    #ts-tropical-systems .low .bar{background:#f2c75c;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Tropical Systems</p>
+      <h1>Tropical Systems Risk Across Maryland</h1>
+      <p class="lede">
+        Tropical systems in Maryland include hurricanes, tropical storms, and the inland remnants of coastal storms that
+        can produce damaging winds, heavy rainfall, flooding, power outages, and transportation disruptions. While the
+        strongest direct impacts are generally concentrated in more exposed coastal and highly developed counties, tropical
+        systems can affect communities statewide through a combination of wind, rain, and secondary flood impacts.
+      </p>
+    </div>
+
+    <div class="section" aria-labelledby="tropical-systems-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Hazard</p>
+        <h2 id="tropical-systems-title">Hurricane <span class="pill">HRCN</span></h2>
+        <p class="lede">
+          FEMA’s National Risk Index evaluates hurricane risk using modeled expected annual losses and exposure metrics.
+          In Maryland, higher relative risk is concentrated in counties with large populations, significant built assets,
+          and repeated exposure to tropical storm and hurricane impacts, including wind damage and inland flooding from
+          storm remnants.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Tropical Systems</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$128.39M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$107.90M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$3.97M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$16.52M</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland table. Fields:
+          <strong>HRCN_EALT</strong>, <strong>HRCN_EALB</strong>, <strong>HRCN_EALPE</strong>,
+          <strong>HRCN_EALA</strong>, and <strong>HRCN_EXP_AREA</strong>.
+          Event Count (<strong>HRCN_EVNTS</strong>) = 140 for the 1996–2023 period of record.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How tropical systems affect Maryland communities</h3>
+        <ul class="impact-list">
+          <li>High winds can damage roofs, siding, trees, and overhead utilities, creating debris and power outages.</li>
+          <li>Heavy rainfall from tropical systems can trigger inland flooding, flash flooding, and drainage system overload.</li>
+          <li>Low-lying and coastal areas may also experience tidal flooding, surge-related impacts, and erosion.</li>
+          <li>Transportation corridors, schools, businesses, and public services can be disrupted by flooding, downed trees, and extended outages.</li>
+          <li>Agricultural losses can occur from crop damage, saturated fields, wind impacts, and prolonged wet conditions.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/9a6acad2f98f4d16a50fddbfb62580bb/data"
+            alt="Maryland county map showing Tropical Systems hurricane risk categories. Relatively High: Baltimore City, Baltimore County, Montgomery, Prince George’s, Wicomico, Worcester. Relatively Moderate: Anne Arundel, Calvert, Caroline, Carroll, Cecil, Charles, Dorchester, Frederick, Harford, Howard, Kent, Queen Anne’s, Somerset, St. Mary’s, Talbot, Washington. Relatively Low: Allegany, Garrett."
+            aria-describedby="hrcn-map-desc"
+          >
+
+          <div id="hrcn-map-desc" class="sr-only">
+            Tropical Systems hurricane risk by county. Relatively High: Baltimore City, Baltimore County,
+            Montgomery, Prince George’s, Wicomico, Worcester. Relatively Moderate: Anne Arundel, Calvert,
+            Caroline, Carroll, Cecil, Charles, Dorchester, Frederick, Harford, Howard, Kent, Queen Anne’s,
+            Somerset, St. Mary’s, Talbot, Washington. Relatively Low: Allegany, Garrett.
+          </div>
+
+          <p class="note">
+            Tropical Systems Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Hurricane.
+          </p>
+
+          <details aria-label="Accessible tropical systems data table and download">
+            <summary>Accessible data table and download (Tropical Systems)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Tropical Systems hurricane risk category by county">
+                <caption>Tropical Systems (Hurricane) — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Baltimore City; Baltimore County; Montgomery; Prince George’s; Wicomico; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Anne Arundel; Calvert; Caroline; Carroll; Cecil; Charles; Dorchester; Frederick; Harford; Howard; Kent; Queen Anne’s; Somerset; St. Mary’s; Talbot; Washington</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Allegany; Garrett</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/2d11cb27e67b4e9a8c8ef15b3a1475a1/data">Tropical Systems risk table by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Tropical Systems tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Tropical Systems county risk tiers">
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Highest modeled losses in major population and asset centers</h4>
+              <ul>
+                <li>Baltimore City</li>
+                <li>Baltimore County</li>
+                <li>Montgomery</li>
+                <li>Prince George’s</li>
+                <li>Wicomico</li>
+                <li>Worcester</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Broad statewide exposure from wind, rain, and storm remnants</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Calvert</li>
+                <li>Caroline</li>
+                <li>Carroll</li>
+                <li>Cecil</li>
+                <li>Charles</li>
+                <li>Dorchester</li>
+                <li>Frederick</li>
+                <li>Harford</li>
+                <li>Howard</li>
+                <li>Kent</li>
+                <li>Queen Anne’s</li>
+                <li>Somerset</li>
+                <li>St. Mary’s</li>
+                <li>Talbot</li>
+                <li>Washington</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Low</p>
+              <h4>Lower modeled losses in western counties with less overall exposure</h4>
+              <p class="muted" style="margin:0;">
+                <strong>Relatively Low:</strong> Allegany, Garrett
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Narrative -->
+    <div class="section">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p>
+            <strong>Tropical Systems (Hurricane):</strong> Tropical systems risk in Maryland reflects a combination of
+            wind exposure, inland and coastal flood potential, development intensity, and the concentration of people,
+            buildings, infrastructure, and economic assets. Counties with relatively high risk generally combine larger
+            populations and asset values with repeated exposure to tropical storm and hurricane impacts.
+          </p>
+
+          <p>
+            The relatively moderate tier includes a broad group of counties that still face meaningful risk from tropical
+            systems, especially from heavy rainfall, power outages, downed trees, and transportation disruptions. Even
+            where direct coastal exposure is lower, inland remnants of tropical systems can still produce damaging impacts.
+          </p>
+
+          <p>
+            The relatively low tier in western Maryland reflects lower modeled annualized losses compared to the rest of
+            the state, though these counties can still experience heavy rain, isolated wind damage, and service disruption
+            when strong storm remnants track inland.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland table. Tropical Systems metrics shown use the
+            <strong>HRCN_*</strong> field series.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

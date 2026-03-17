@@ -1,0 +1,418 @@
+<section id="dr-drought" aria-label="Drought risk summary">
+  <style>
+    #dr-drought{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #dr-drought .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+    #dr-drought .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(234,179,8,.10), rgba(255,255,255,0));
+    }
+    #dr-drought h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;line-height:1.15;}
+    #dr-drought h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #dr-drought h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #dr-drought .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+    #dr-drought .section{margin-top:18px;}
+
+    #dr-drought .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #dr-drought .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #dr-drought .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #dr-drought .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #dr-drought .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #dr-drought .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(234,179,8,.08), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+    #dr-drought .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+    #dr-drought .stat{
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:-.01em;
+      margin:0 0 4px;
+    }
+    #dr-drought .statlabel{
+      margin:0;
+      font-size:13px;
+      line-height:1.4;
+      color:rgba(31,41,55,.72);
+    }
+    #dr-drought .note{
+      font-size:12px;
+      color:rgba(31,41,55,.68);
+      margin-top:10px;
+      line-height:1.5;
+    }
+    #dr-drought .muted{color:rgba(31,41,55,.72);}
+    #dr-drought .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #dr-drought .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #dr-drought .impact-list li{margin:6px 0;}
+
+    #dr-drought .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:18px;
+      padding:12px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #dr-drought img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+    }
+
+    #dr-drought details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #dr-drought summary{cursor:pointer;font-weight:800;}
+    #dr-drought summary::-webkit-details-marker{display:none;}
+
+    #dr-drought .sr-only{
+      position:absolute !important;
+      width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
+
+    #dr-drought table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #dr-drought caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #dr-drought th, #dr-drought td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #dr-drought th{
+      background:rgba(248,250,252,.9);
+      text-align:left;
+    }
+
+    #dr-drought .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #dr-drought .tier .bar{height:5px;}
+    #dr-drought .tier .body{padding:14px 16px;}
+    #dr-drought .tier .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.70);
+      margin:0 0 6px;
+    }
+    #dr-drought .tier h4{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    #dr-drought .tier ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.55;
+    }
+    #dr-drought .tier li{margin:3px 0;}
+
+    /* Drought tier colors */
+    #dr-drought .high .bar{background:#dc2626;}
+    #dr-drought .mod .bar{background:#f97316;}
+    #dr-drought .low .bar{background:#eab308;}
+    #dr-drought .noeal .bar{background:#94a3b8;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Drought</p>
+      <h1>Drought Risk Across Maryland</h1>
+      <p class="lede">
+        Maryland’s drought risk is driven by agricultural exposure, water supply sensitivity, and the potential
+        for prolonged soil moisture deficits. Relative risk varies by county based largely on modeled agricultural
+        losses in the FEMA National Risk Index dataset.
+      </p>
+    </div>
+
+    <!-- HAZARD INTRO -->
+    <div class="section">
+      <div class="subhazard-head">
+        <p class="kicker">Drought Hazard</p>
+        <h2>Drought <span class="pill">DRGT</span></h2>
+        <p class="lede">
+          In the FEMA National Risk Index, drought impacts in Maryland are modeled primarily through agricultural
+          losses rather than building or population losses. Counties with greater agricultural exposure and higher
+          modeled expected annual losses rank higher in relative drought risk.
+        </p>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="section">
+      <div class="card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Drought</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$24.73M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$24.73M</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">N/A</p>
+            <p class="statlabel">Building Value EAL (not modeled)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">12.75</p>
+            <p class="statlabel">Annualized Event Frequency</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland table. Fields:
+          <strong>DRGT_EALT</strong>, <strong>DRGT_EALA</strong>, <strong>DRGT_EVNTS</strong>,
+          and <strong>DRGT_EXP_AREA</strong>. Annualized Event Frequency is computed as
+          <strong>DRGT_EVNTS / 28</strong> for the 1996–2023 period of record.
+        </p>
+      </div>
+    </div>
+
+    <!-- KEY IMPACTS -->
+    <div class="section card" aria-label="Drought key impacts">
+      <p class="kicker">Key Impacts</p>
+      <h3>How drought conditions affect Maryland communities</h3>
+      <ul class="impact-list">
+        <li>Drought can reduce crop yields and increase irrigation costs, driving agricultural losses across affected counties.</li>
+        <li>Extended dry periods can reduce streamflow and groundwater recharge, affecting water supply reliability for residents, industry, and ecosystems.</li>
+        <li>Stressed soils, vegetation, and low-flow conditions can degrade habitat quality, water quality, and forest health.</li>
+        <li>Drier soils and vegetation can increase susceptibility to wildfire and brush fire conditions.</li>
+        <li>Long-duration drought can create cumulative economic impacts even when immediate structural damage is limited.</li>
+      </ul>
+    </div>
+
+    <!-- MAP + ADA -->
+    <div class="section" aria-label="Drought risk map">
+      <div class="mapbox">
+        <img
+          src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/4fee694b1eb54782a2adc306b5aa50e2/data"
+          alt="Maryland county map showing Drought risk categories. Relatively High: Cecil, Kent, Queen Anne’s, Caroline. Relatively Moderate: Washington, Frederick, Carroll, Baltimore County, Harford, Montgomery, Howard, Anne Arundel, Prince George’s, Calvert, Charles, St. Mary’s, Dorchester, Talbot, Wicomico, Worcester. Relatively Low: Garrett, Allegany, Somerset. No Expected Annual Losses: Baltimore City."
+          aria-describedby="dr-map-desc"
+          loading="lazy"
+        >
+
+        <div id="dr-map-desc" class="sr-only">
+          Drought Risk by County. Relatively High: Cecil, Kent, Queen Anne’s, Caroline.
+          Relatively Moderate: Washington, Frederick, Carroll, Baltimore County, Harford, Montgomery,
+          Howard, Anne Arundel, Prince George’s, Calvert, Charles, St. Mary’s, Dorchester, Talbot,
+          Wicomico, Worcester. Relatively Low: Garrett, Allegany, Somerset.
+          No Expected Annual Losses: Baltimore City.
+        </div>
+
+        <p class="note">
+          Drought Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Drought.
+        </p>
+
+        <details aria-label="Accessible drought risk data table and download">
+          <summary>Accessible data table and download (Drought)</summary>
+          <div style="margin-top:10px;">
+            <p class="note" style="margin-top:0;">
+              This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+            </p>
+
+            <table aria-label="Drought risk category by county">
+              <caption>Drought — Risk Category by County</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Risk Category</th>
+                  <th scope="col">Counties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Relatively High</th>
+                  <td>Cecil; Kent; Queen Anne’s; Caroline</td>
+                </tr>
+                <tr>
+                  <th scope="row">Relatively Moderate</th>
+                  <td>Washington; Frederick; Carroll; Baltimore County; Harford; Montgomery; Howard; Anne Arundel; Prince George’s; Calvert; Charles; St. Mary’s; Dorchester; Talbot; Wicomico; Worcester</td>
+                </tr>
+                <tr>
+                  <th scope="row">Relatively Low</th>
+                  <td>Garrett; Allegany; Somerset</td>
+                </tr>
+                <tr>
+                  <th scope="row">No Expected Annual Losses</th>
+                  <td>Baltimore City</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="note">
+              Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/7f0d8a565f354f1f95e442cce5aaccbc/data">Drought risk table by county</a>
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- TIER EXPLANATION -->
+    <div class="section">
+      <p class="kicker">Risk Tiers</p>
+      <h3>Drought tier interpretation</h3>
+
+      <div class="grid cols-4" aria-label="Drought risk tiers">
+        <div class="tier high">
+          <div class="bar"></div>
+          <div class="body">
+            <p class="label">Relatively High</p>
+            <h4>Highest modeled drought risk from agricultural exposure</h4>
+            <ul>
+              <li>Cecil</li>
+              <li>Kent</li>
+              <li>Queen Anne’s</li>
+              <li>Caroline</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tier mod">
+          <div class="bar"></div>
+          <div class="body">
+            <p class="label">Relatively Moderate</p>
+            <h4>Meaningful drought risk across a broad share of the state</h4>
+            <ul>
+              <li>Washington</li>
+              <li>Frederick</li>
+              <li>Carroll</li>
+              <li>Baltimore County</li>
+              <li>Harford</li>
+              <li>Montgomery</li>
+              <li>Howard</li>
+              <li>Anne Arundel</li>
+              <li>Prince George’s</li>
+              <li>Calvert</li>
+              <li>Charles</li>
+              <li>St. Mary’s</li>
+              <li>Dorchester</li>
+              <li>Talbot</li>
+              <li>Wicomico</li>
+              <li>Worcester</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tier low">
+          <div class="bar"></div>
+          <div class="body">
+            <p class="label">Relatively Low</p>
+            <h4>Lower modeled drought risk in a small set of counties</h4>
+            <ul>
+              <li>Garrett</li>
+              <li>Allegany</li>
+              <li>Somerset</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tier noeal">
+          <div class="bar"></div>
+          <div class="body">
+            <p class="label">No Expected Annual Losses</p>
+            <h4>Modeled drought losses not expected in the NRI dataset</h4>
+            <ul>
+              <li>Baltimore City</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL NARRATIVE -->
+    <div class="section" aria-label="Full narrative">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p>
+            <strong>Drought:</strong> Maryland’s drought impacts in the FEMA National Risk Index are modeled primarily
+            through agriculture-related losses. Statewide drought Expected Annual Loss totals approximately
+            <strong>$24.73M</strong> annually, with an estimated annualized event frequency of <strong>12.75</strong>
+            events per year based on the 1996–2023 period of record.
+          </p>
+
+          <p>
+            The drought risk map shows the highest relative drought risk in <strong>Cecil, Kent, Queen Anne’s, and Caroline</strong>.
+            A broad set of counties is categorized as <strong>relatively moderate</strong>, reflecting meaningful agricultural
+            exposure and modeled annualized losses. <strong>Garrett, Allegany, and Somerset</strong> are categorized as
+            <strong>relatively low</strong>. <strong>Baltimore City</strong> is categorized as
+            <strong>No Expected Annual Losses</strong>, reflecting a highly urbanized jurisdiction with limited agricultural
+            exposure in the NRI model.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland table. Metrics shown include Drought
+            (<strong>DRGT_*</strong>) Expected Annual Loss totals and agriculture component, county relative risk ratings,
+            event count, and exposure area.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

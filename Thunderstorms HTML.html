@@ -1,0 +1,767 @@
+<section id="ts-thunderstorms" aria-label="Thunderstorms risk summary">
+  <style>
+    #ts-thunderstorms{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #ts-thunderstorms .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+    #ts-thunderstorms .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(14,165,233,.08), rgba(255,255,255,0));
+    }
+    #ts-thunderstorms h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;}
+    #ts-thunderstorms h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #ts-thunderstorms h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #ts-thunderstorms h4{margin:0 0 10px;font-size:18px;letter-spacing:-.01em;}
+    #ts-thunderstorms .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+    #ts-thunderstorms .section{margin-top:18px;}
+    #ts-thunderstorms .subhazard{
+      margin-top:26px;
+      padding-top:8px;
+      border-top:1px solid rgba(15,23,42,.08);
+    }
+
+    #ts-thunderstorms .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #ts-thunderstorms .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+      #ts-thunderstorms .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #ts-thunderstorms .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #ts-thunderstorms .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #ts-thunderstorms .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+
+    #ts-thunderstorms .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(14,165,233,.06), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+
+    #ts-thunderstorms .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+
+    #ts-thunderstorms .stat{font-size:22px;font-weight:800;margin:0 0 4px;}
+    #ts-thunderstorms .statlabel{font-size:13px;color:rgba(31,41,55,.72);margin:0;}
+    #ts-thunderstorms .note{font-size:12px;color:rgba(31,41,55,.68);margin-top:10px;line-height:1.5;}
+    #ts-thunderstorms .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #ts-thunderstorms .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #ts-thunderstorms .impact-list li{margin:6px 0;}
+
+    #ts-thunderstorms .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #ts-thunderstorms img{width:100%;border-radius:14px;display:block;}
+
+    #ts-thunderstorms details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #ts-thunderstorms summary{cursor:pointer;font-weight:800;}
+
+    #ts-thunderstorms .sr-only{
+      position:absolute !important;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+
+    #ts-thunderstorms table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #ts-thunderstorms caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #ts-thunderstorms th, #ts-thunderstorms td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #ts-thunderstorms th{
+      background:rgba(239,246,255,.9);
+      text-align:left;
+    }
+
+    #ts-thunderstorms .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #ts-thunderstorms .tier .bar{height:5px;}
+    #ts-thunderstorms .tier .body{padding:14px 16px;}
+    #ts-thunderstorms .tier .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.70);
+      margin:0 0 6px;
+    }
+    #ts-thunderstorms .tier ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.55;
+    }
+    #ts-thunderstorms .tier li{margin:3px 0;}
+    #ts-thunderstorms .muted{color:rgba(31,41,55,.72);}
+
+    /* Thunderstorm tier colors */
+    #ts-thunderstorms .hi .bar{background:#ef4444;}
+    #ts-thunderstorms .vhi .bar{background:#c00032;}
+    #ts-thunderstorms .mod .bar{background:#fb923c;}
+    #ts-thunderstorms .low .bar{background:#f2c75c;}
+    #ts-thunderstorms .vlow .bar{background:#ececab;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Thunderstorms</p>
+      <h1>Hail, Lightning, and Strong Wind Risk Across Maryland</h1>
+      <p class="lede">
+        Thunderstorm hazards affect Maryland through hail impacts to roofs, vehicles, and crops; lightning-related injuries,
+        fires, and outages; and strong winds that damage buildings, trees, and utility systems. The sections below summarize
+        statewide FEMA National Risk Index metrics and county-level relative risk patterns for the three primary thunderstorm
+        sub-hazards used on this page.
+      </p>
+    </div>
+
+    <!-- STATEWIDE SUMMARY -->
+    <div class="section">
+      <div class="card">
+        <p class="kicker">Statewide Summary</p>
+        <h3>Estimated Annual Loss totals across thunderstorm sub-hazards</h3>
+
+        <div class="grid cols-3" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$13.72M</p>
+            <p class="statlabel">Hail Total EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$22.34M</p>
+            <p class="statlabel">Lightning Total EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$40.25M</p>
+            <p class="statlabel">Strong Wind Total EAL</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland statewide table. Fields:
+          <strong>HAIL_EALT</strong>, <strong>LTNG_EALT</strong>, and <strong>SWND_EALT</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- HAIL -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="hail-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Thunderstorm Sub-Hazard</p>
+        <h2 id="hail-title">Hail <span class="pill">HAIL</span></h2>
+        <p class="lede">
+          Hail events in Maryland are generally localized, but they can still damage roofs, siding, vehicles, and agricultural
+          resources. While statewide hail losses remain lower than other thunderstorm hazards, crop exposure and built-asset
+          concentration can increase localized vulnerability.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Hail</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$13.72M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$12.65M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$195.42K</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$869.72K</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland statewide table. Fields:
+          <strong>HAIL_EALT</strong>, <strong>HAIL_EALB</strong>, <strong>HAIL_EALPE</strong>,
+          <strong>HAIL_EALA</strong>, <strong>HAIL_EXP_AREA</strong>, and <strong>HAIL_EVNTS</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How hail affects Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Hail can damage shingles, siding, skylights, windows, gutters, and vehicles, especially during short-duration severe storms.</li>
+          <li>Agricultural losses can occur when hail damages crops, orchards, and other exposed farm assets during the growing season.</li>
+          <li>Localized property damage can trigger repair costs, insurance claims, and temporary disruptions for homes and businesses.</li>
+          <li>Impacts are often concentrated along narrow storm paths, so severe losses can occur in one county while nearby areas see little damage.</li>
+          <li>Even where countywide risk is low, isolated large-hail events can still produce meaningful local losses.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/da55732bf0494a578c32c4e3ea7c5d8d/data"
+            alt="Maryland county map showing Hail risk categories. Relatively High: Montgomery. Relatively Moderate: Anne Arundel, Baltimore, Baltimore City, Frederick, Howard, Prince George’s. Relatively Low: Allegany, Calvert, Caroline, Carroll, Cecil, Charles, Garrett, Queen Anne’s, St. Mary’s, Washington. Very Low: Dorchester, Harford, Kent, Somerset, Talbot, Wicomico, Worcester."
+            aria-describedby="hail-map-desc"
+          >
+
+          <div id="hail-map-desc" class="sr-only">
+            Hail risk by county. Relatively High: Montgomery. Relatively Moderate: Anne Arundel, Baltimore,
+            Baltimore City, Frederick, Howard, Prince George’s. Relatively Low: Allegany, Calvert, Caroline,
+            Carroll, Cecil, Charles, Garrett, Queen Anne’s, St. Mary’s, Washington. Very Low: Dorchester,
+            Harford, Kent, Somerset, Talbot, Wicomico, Worcester.
+          </div>
+
+          <p class="note">
+            Hail Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Hail.
+          </p>
+
+          <details aria-label="Accessible hail data table and download">
+            <summary>Accessible data table and download (Hail)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Hail risk category by county">
+                <caption>Hail — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Montgomery</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Anne Arundel; Baltimore; Baltimore City; Frederick; Howard; Prince George’s</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Allegany; Calvert; Caroline; Carroll; Cecil; Charles; Garrett; Queen Anne’s; St. Mary’s; Washington</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Very Low</th>
+                    <td>Dorchester; Harford; Kent; Somerset; Talbot; Wicomico; Worcester</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/9a6e2ec89526403a8ea75095379805a1/data">Thunderstorms risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Hail tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Hail county risk tiers">
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Highest modeled hail losses in a single central Maryland county</h4>
+              <ul>
+                <li>Montgomery</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Moderate losses where exposure and asset value increase storm damage potential</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Baltimore</li>
+                <li>Baltimore City</li>
+                <li>Frederick</li>
+                <li>Howard</li>
+                <li>Prince George’s</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Low / Very Low</p>
+              <h4>Lower modeled hail losses across much of the state</h4>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Relatively Low:</strong> Allegany, Calvert, Caroline, Carroll, Cecil, Charles, Garrett, Queen Anne’s, St. Mary’s, Washington
+              </p>
+              <p class="muted" style="margin:0;">
+                <strong>Very Low:</strong> Dorchester, Harford, Kent, Somerset, Talbot, Wicomico, Worcester
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- LIGHTNING -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="lightning-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Thunderstorm Sub-Hazard</p>
+        <h2 id="lightning-title">Lightning <span class="pill">LTNG</span></h2>
+        <p class="lede">
+          Lightning risk in Maryland is influenced by thunderstorm frequency, population exposure, outdoor activity, and
+          the concentration of structures and infrastructure that can be damaged by strikes, fire, or associated outages.
+          Modeled losses are highest in the central part of the state where exposure is greatest.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Lightning</h3>
+
+        <div class="grid cols-4" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$22.34M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$1.59M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$20.74M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland statewide table. Fields:
+          <strong>LTNG_EALT</strong>, <strong>LTNG_EALB</strong>, <strong>LTNG_EALPE</strong>,
+          and <strong>LTNG_EXP_AREA</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How lightning affects Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Lightning can injure or kill people exposed during outdoor work, recreation, sports, and travel.</li>
+          <li>Strikes can ignite structure fires and damage homes, public buildings, barns, and other facilities.</li>
+          <li>Power lines, transformers, and communications systems can be damaged, causing outages and service disruption.</li>
+          <li>Critical facilities may experience downtime when protective systems fail or backup systems are stressed.</li>
+          <li>Counties with larger populations and more built assets tend to show higher modeled lightning losses.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/5001d5b902e140cda90fc386b07ec3ee/data"
+            alt="Maryland county map showing Lightning risk categories. Very High: Baltimore, Prince George’s. Relatively High: Anne Arundel, Baltimore City, Carroll, Charles, Frederick, Harford, Howard, Montgomery. Relatively Moderate: Calvert, Cecil, Kent, St. Mary’s, Talbot, Washington, Wicomico. Relatively Low: Allegany, Caroline, Dorchester, Garrett, Queen Anne’s, Worcester. Very Low: Somerset."
+            aria-describedby="lightning-map-desc"
+          >
+
+          <div id="lightning-map-desc" class="sr-only">
+            Lightning risk by county. Very High: Baltimore, Prince George’s. Relatively High: Anne Arundel,
+            Baltimore City, Carroll, Charles, Frederick, Harford, Howard, Montgomery. Relatively Moderate:
+            Calvert, Cecil, Kent, St. Mary’s, Talbot, Washington, Wicomico. Relatively Low: Allegany, Caroline,
+            Dorchester, Garrett, Queen Anne’s, Worcester. Very Low: Somerset.
+          </div>
+
+          <p class="note">
+            Lightning Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Lightning.
+          </p>
+
+          <details aria-label="Accessible lightning data table and download">
+            <summary>Accessible data table and download (Lightning)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Lightning risk category by county">
+                <caption>Lightning — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Very High</th>
+                    <td>Baltimore; Prince George’s</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Anne Arundel; Baltimore City; Carroll; Charles; Frederick; Harford; Howard; Montgomery</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Calvert; Cecil; Kent; St. Mary’s; Talbot; Washington; Wicomico</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Allegany; Caroline; Dorchester; Garrett; Queen Anne’s; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Very Low</th>
+                    <td>Somerset</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/9a6e2ec89526403a8ea75095379805a1/data">Thunderstorms risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Lightning tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Lightning county risk tiers">
+          <div class="tier vhi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Very High</p>
+              <h4>Highest modeled lightning losses in major population and infrastructure centers</h4>
+              <ul>
+                <li>Baltimore</li>
+                <li>Prince George’s</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Elevated risk across central Maryland where exposure is concentrated</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Baltimore City</li>
+                <li>Carroll</li>
+                <li>Charles</li>
+                <li>Frederick</li>
+                <li>Harford</li>
+                <li>Howard</li>
+                <li>Montgomery</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Moderate to Very Low</p>
+              <h4>Lower modeled losses outside the highest-exposure corridor</h4>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Relatively Moderate:</strong> Calvert, Cecil, Kent, St. Mary’s, Talbot, Washington, Wicomico
+              </p>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Relatively Low:</strong> Allegany, Caroline, Dorchester, Garrett, Queen Anne’s, Worcester
+              </p>
+              <p class="muted" style="margin:0;">
+                <strong>Very Low:</strong> Somerset
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- STRONG WIND -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="strong-wind-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Thunderstorm Sub-Hazard</p>
+        <h2 id="strong-wind-title">Strong Wind <span class="pill">SWND</span></h2>
+        <p class="lede">
+          Strong wind risk reflects damaging thunderstorm gusts that can bring down trees, damage roofs and siding,
+          disrupt transportation, and cause widespread outages. Modeled losses are highest across central Maryland where
+          storm exposure overlaps with large populations, dense development, and extensive infrastructure.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Strong Wind</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$40.25M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$14.23M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$24.96M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$1.06M</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland statewide table. Fields:
+          <strong>SWND_EALT</strong>, <strong>SWND_EALB</strong>, <strong>SWND_EALPE</strong>,
+          <strong>SWND_EALA</strong>, <strong>SWND_EXP_AREA</strong>, and <strong>SWND_EVNTS</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How strong wind affects Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Damaging gusts can bring down trees and limbs, damaging homes, vehicles, roadways, and utility lines.</li>
+          <li>Power outages may affect residents, businesses, schools, and critical facilities when poles, wires, and equipment fail.</li>
+          <li>Roofing, siding, signage, and other exposed building components can be damaged during severe thunderstorm winds.</li>
+          <li>Blocked roads and signal outages can disrupt commuting, freight movement, and emergency response operations.</li>
+          <li>Counties with dense development and extensive infrastructure generally show higher modeled strong wind losses.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/272e613e20f04897a6ccc9bb637aa767/data"
+            alt="Maryland county map showing Strong Wind risk categories. Relatively High: Anne Arundel, Baltimore, Baltimore City, Carroll, Charles, Frederick, Harford, Howard, Montgomery, Prince George’s. Relatively Moderate: Allegany, Calvert, Caroline, Cecil, Queen Anne’s, St. Mary’s, Talbot, Washington. Relatively Low: Dorchester, Garrett, Kent, Somerset, Wicomico, Worcester."
+            aria-describedby="swnd-map-desc"
+          >
+
+          <div id="swnd-map-desc" class="sr-only">
+            Strong Wind risk by county. Relatively High: Anne Arundel, Baltimore, Baltimore City, Carroll,
+            Charles, Frederick, Harford, Howard, Montgomery, Prince George’s. Relatively Moderate: Allegany,
+            Calvert, Caroline, Cecil, Queen Anne’s, St. Mary’s, Talbot, Washington. Relatively Low: Dorchester,
+            Garrett, Kent, Somerset, Wicomico, Worcester.
+          </div>
+
+          <p class="note">
+            Strong Wind Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Strong Wind.
+          </p>
+
+          <details aria-label="Accessible strong wind data table and download">
+            <summary>Accessible data table and download (Strong Wind)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Strong Wind risk category by county">
+                <caption>Strong Wind — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Anne Arundel; Baltimore; Baltimore City; Carroll; Charles; Cecil; Frederick; Harford; Howard; Montgomery; Prince George’s</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Allegany; Calvert; Caroline; Queen Anne’s; St. Mary’s; Washington</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Dorchester; Garrett; Kent; Talbot; Somerset; Wicomico; Worcester</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/9a6e2ec89526403a8ea75095379805a1/data">Thunderstorms risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Strong Wind tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Strong Wind county risk tiers">
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Highest modeled losses across Maryland’s central development corridor</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Baltimore</li>
+                <li>Baltimore City</li>
+                <li>Carroll</li>
+                <li>Charles</li>
+		<li>Cecil</li>
+                <li>Frederick</li>
+                <li>Harford</li>
+                <li>Howard</li>
+                <li>Montgomery</li>
+                <li>Prince George’s</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Moderate losses outside the highest-exposure counties</h4>
+              <ul>
+                <li>Allegany</li>
+                <li>Calvert</li>
+                <li>Caroline</li>
+                <li>Queen Anne’s</li>
+                <li>St. Mary’s</li>                
+                <li>Washington</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Low</p>
+              <h4>Lower modeled losses in less-exposed eastern and western counties</h4>
+              <p class="muted" style="margin:0;">
+                <strong>Relatively Low:</strong> Dorchester, Garrett, Kent, Somerset, Wicomico, Worcester, Talbot
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Narrative -->
+    <div class="section">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p>
+            <strong>Hail:</strong> Hail risk in Maryland is generally lower than other thunderstorm-related hazards, but
+            localized impacts can still be meaningful where higher-value development and agriculture are exposed. The current
+            county risk pattern shows the highest modeled hail losses concentrated in Montgomery County, with relatively
+            moderate losses in several central Maryland counties and lower modeled losses elsewhere.
+          </p>
+
+          <p>
+            <strong>Lightning:</strong> Lightning risk is concentrated in central Maryland where thunderstorm exposure overlaps
+            with large populations, dense development, and extensive infrastructure. Counties in the highest tiers reflect
+            greater modeled losses from injury risk, fire potential, and damage to electrical and communications systems.
+          </p>
+
+          <p>
+            <strong>Strong Wind:</strong> Strong wind risk is also highest across the central development corridor, where
+            severe thunderstorm gusts can affect large numbers of people, structures, transportation assets, and utility systems.
+            Lower-tier counties can still experience damaging wind events, but modeled annualized losses are lower on the NRI scale.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland statewide table and county relative risk categories.
+            Metrics shown use the <strong>HAIL_*</strong>, <strong>LTNG_*</strong>, and <strong>SWND_*</strong> field series.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

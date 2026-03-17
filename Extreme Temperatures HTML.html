@@ -1,0 +1,561 @@
+<section id="et-extreme-temperatures" aria-label="Extreme Temperatures risk summary">
+  <style>
+    #et-extreme-temperatures{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #et-extreme-temperatures .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+    #et-extreme-temperatures .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:linear-gradient(180deg, rgba(59,130,246,.07), rgba(255,255,255,0));
+    }
+    #et-extreme-temperatures h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;}
+    #et-extreme-temperatures h2{margin:0 0 8px;font-size:26px;letter-spacing:-.01em;}
+    #et-extreme-temperatures h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em;}
+    #et-extreme-temperatures .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+    #et-extreme-temperatures .section{margin-top:18px;}
+    #et-extreme-temperatures .subhazard{
+      margin-top:26px;
+      padding-top:8px;
+      border-top:1px solid rgba(15,23,42,.08);
+    }
+
+    #et-extreme-temperatures .grid{display:grid;gap:14px;}
+    @media (min-width:860px){
+      #et-extreme-temperatures .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+      #et-extreme-temperatures .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #et-extreme-temperatures .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #et-extreme-temperatures .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #et-extreme-temperatures .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.94);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+
+    #et-extreme-temperatures .subhazard-head{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(59,130,246,.06), rgba(255,255,255,.92));
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+
+    #et-extreme-temperatures .kicker{
+      margin:0 0 6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+
+    #et-extreme-temperatures .stat{font-size:22px;font-weight:800;margin:0 0 4px;}
+    #et-extreme-temperatures .statlabel{font-size:13px;color:rgba(31,41,55,.72);margin:0;}
+    #et-extreme-temperatures .note{font-size:12px;color:rgba(31,41,55,.68);margin-top:10px;line-height:1.5;}
+    #et-extreme-temperatures .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(248,250,252,.92);
+      color:rgba(31,41,55,.78);
+      vertical-align:middle;
+      margin-left:8px;
+    }
+
+    #et-extreme-temperatures .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #et-extreme-temperatures .impact-list li{margin:6px 0;}
+
+    #et-extreme-temperatures .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #et-extreme-temperatures img{width:100%;border-radius:14px;display:block;}
+
+    #et-extreme-temperatures details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.94);
+    }
+    #et-extreme-temperatures summary{cursor:pointer;font-weight:800;}
+
+    #et-extreme-temperatures .sr-only{
+      position:absolute !important;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+
+    #et-extreme-temperatures table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #et-extreme-temperatures caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #et-extreme-temperatures th, #et-extreme-temperatures td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #et-extreme-temperatures th{
+      background:rgba(248,250,252,.9);
+      text-align:left;
+    }
+
+    #et-extreme-temperatures .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #et-extreme-temperatures .tier .bar{height:5px;}
+    #et-extreme-temperatures .tier .body{padding:14px 16px;}
+    #et-extreme-temperatures .tier .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(31,41,55,.70);
+      margin:0 0 6px;
+    }
+    #et-extreme-temperatures .tier h4{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    #et-extreme-temperatures .tier ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.55;
+    }
+    #et-extreme-temperatures .tier li{margin:3px 0;}
+    #et-extreme-temperatures .muted{color:rgba(31,41,55,.72);}
+
+    /* Temperature color ramp */
+    #et-extreme-temperatures .hi .bar{background:#dc2626;}
+    #et-extreme-temperatures .mod .bar{background:#f97316;}
+    #et-extreme-temperatures .low .bar{background:#facc15;}
+    #et-extreme-temperatures .vlow .bar{background:#fde68a;}
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Extreme Temperatures</p>
+      <h1>Cold Wave and Heat Wave Risk Across Maryland</h1>
+      <p class="lede">
+        Extreme temperature hazards in Maryland include both dangerous cold and dangerous heat. Although these
+        hazards affect people statewide, relative risk varies by county based on population exposure, infrastructure,
+        development patterns, and modeled annualized losses. The sections below summarize statewide risk patterns
+        for Cold Wave and Heat Wave using FEMA National Risk Index data, paired with accessible map alternatives
+        and county tier breakouts.
+      </p>
+    </div>
+
+    <!-- ============================= -->
+    <!-- COLD WAVE -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="cold-wave-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Extreme Temperatures Sub-Hazard</p>
+        <h2 id="cold-wave-title">Cold Wave <span class="pill">CWAV</span></h2>
+        <p class="lede">
+          Cold wave risk reflects the potential impacts of extreme cold on people, buildings, agriculture,
+          and infrastructure. Risk tends to increase where cold exposure overlaps with larger populations,
+          higher concentrations of buildings and services, and greater system sensitivity to freezing conditions.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Cold Wave</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$3.90M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$7.74K</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$3.89M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$2.33K</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Impacted Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland county table. Fields:
+          <strong>CWAV_EALT</strong>, <strong>CWAV_EALB</strong>, <strong>CWAV_EALPE</strong>,
+          <strong>CWAV_EALA</strong>, and <strong>CWAV_EXP_AREA</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How cold wave conditions affect Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Extreme cold can increase the risk of hypothermia, frostbite, and other serious health impacts, especially for vulnerable populations.</li>
+          <li>Prolonged freezing conditions can increase heating demand and amplify the consequences of electric or fuel service disruptions.</li>
+          <li>Cold weather can damage water systems, burst pipes, and strain transportation infrastructure and maintenance operations.</li>
+          <li>Schools, businesses, and public services may face closures or delayed operations during severe cold events.</li>
+          <li>Agricultural operations and outdoor workers can face additional losses or disruption during extreme cold periods.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/a0ea4ce631f0499b99d36c586dbb5023/data"
+            alt="Maryland county map showing Cold Wave risk categories. Relatively High: Baltimore, Baltimore City, Montgomery. Relatively Moderate: Wicomico, Worcester, Anne Arundel, Carroll, Cecil, Harford, Howard, Prince George’s. Relatively Low: Allegany, Caroline, Garrett, Somerset, St. Mary’s, Talbot, Washington, Frederick, Calvert, Charles, Dorchester, Kent, Queen Anne’s."
+            aria-describedby="cw-map-desc"
+          >
+
+          <div id="cw-map-desc" class="sr-only">
+            Cold Wave Risk by County. Relatively High: Baltimore, Baltimore City, Montgomery.
+            Relatively Moderate: Wicomico, Worcester, Anne Arundel, Carroll, Cecil, Harford, Howard,
+            Prince George’s. Relatively Low: Allegany, Caroline, Garrett, Somerset, St. Mary’s, Talbot,
+            Washington, Frederick, Calvert, Charles, Dorchester, Kent, Queen Anne’s.
+          </div>
+
+          <p class="note">
+            Cold Wave Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Cold Wave.
+          </p>
+
+          <details aria-label="Accessible cold wave data table and download">
+            <summary>Accessible data table and download (Cold Wave)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Cold Wave risk category by county">
+                <caption>Cold Wave — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Baltimore; Baltimore City; Montgomery</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Wicomico; Worcester; Anne Arundel; Carroll; Cecil; Harford; Howard; Prince George’s</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Allegany; Caroline; Garrett; Somerset; St. Mary’s; Talbot; Washington; Frederick; Calvert; Charles; Dorchester; Kent; Queen Anne’s</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/adb23f108c0b4ecc8041f9fa1d9b8a91/data">Extreme temperature risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Cold Wave tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Cold Wave county risk tiers">
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Highest modeled cold-wave risk in the most exposed population centers</h4>
+              <ul>
+                <li>Baltimore</li>
+                <li>Baltimore City</li>
+                <li>Montgomery</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Meaningful cold-weather exposure with notable service and infrastructure sensitivity</h4>
+              <ul>
+                <li>Wicomico</li>
+                <li>Worcester</li>
+                <li>Anne Arundel</li>
+                <li>Carroll</li>
+                <li>Cecil</li>
+                <li>Harford</li>
+                <li>Howard</li>
+                <li>Prince George’s</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Low</p>
+              <h4>Lower modeled losses outside the highest cold-wave exposure areas</h4>
+              <p class="muted" style="margin:0;">
+                <strong>Relatively Low:</strong> Allegany, Caroline, Garrett, Somerset, St. Mary’s, Talbot, Washington, Frederick, Calvert, Charles, Dorchester, Kent, Queen Anne’s
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- HEAT WAVE -->
+    <!-- ============================= -->
+    <div class="subhazard" aria-labelledby="heat-wave-title">
+
+      <div class="subhazard-head">
+        <p class="kicker">Extreme Temperatures Sub-Hazard</p>
+        <h2 id="heat-wave-title">Heat Wave <span class="pill">HWAV</span></h2>
+        <p class="lede">
+          Heat wave risk reflects the public health and economic consequences of prolonged high temperatures.
+          Risk is often shaped by population density, urban heat island effects, limited access to cooling,
+          and the concentration of people, buildings, and services exposed to dangerous heat conditions.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="section card">
+        <p class="kicker">Metrics</p>
+        <h3>National Risk Index indicators for Heat Wave</h3>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$64.69M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$19</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$64.69M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$551</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">10,055.03</p>
+            <p class="statlabel">Impacted Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland county table. Fields:
+          <strong>HWAV_EALT</strong>, <strong>HWAV_EALB</strong>, <strong>HWAV_EALPE</strong>,
+          <strong>HWAV_EALA</strong>, and <strong>HWAV_EXP_AREA</strong>.
+        </p>
+      </div>
+
+      <!-- Key Impacts -->
+      <div class="section card">
+        <p class="kicker">Key Impacts</p>
+        <h3>How heat wave conditions affect Maryland communities</h3>
+        <ul class="impact-list">
+          <li>Extreme heat increases the risk of heat exhaustion, heat stroke, dehydration, and heat-related mortality.</li>
+          <li>Urban and suburban areas with more impervious surfaces can experience intensified heat from urban heat island effects.</li>
+          <li>High temperatures can drive peak electricity demand for cooling and increase the consequences of outages.</li>
+          <li>Outdoor work, recreation, and public events may be disrupted during prolonged heat episodes.</li>
+          <li>Public health systems, cooling centers, and social services can face additional strain during dangerous heat events.</li>
+        </ul>
+      </div>
+
+      <!-- Map + ADA -->
+      <div class="section">
+        <div class="mapbox">
+          <img
+            src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/62de26c845bd4efd93a400552f599a5a/data"
+            alt="Maryland county map showing Heat Wave risk categories. Relatively High: Baltimore, Baltimore City, Montgomery, Prince George’s. Relatively Moderate: Anne Arundel, Frederick, Talbot, Carroll, Cecil, Charles, Harford, Howard. Relatively Low: Allegany, Caroline, Dorchester, St. Mary’s, Washington, Wicomico, Calvert, Kent, Queen Anne’s, Worcester. Very Low: Garrett, Somerset."
+            aria-describedby="hw-map-desc"
+          >
+
+          <div id="hw-map-desc" class="sr-only">
+            Heat Wave Risk by County. Relatively High: Baltimore, Baltimore City, Montgomery,
+            Prince George’s. Relatively Moderate: Anne Arundel, Frederick, Talbot, Carroll, Cecil,
+            Charles, Harford, Howard. Relatively Low: Allegany, Caroline, Dorchester, St. Mary’s,
+            Washington, Wicomico, Calvert, Kent, Queen Anne’s, Worcester. Very Low: Garrett, Somerset.
+          </div>
+
+          <p class="note">
+            Heat Wave Risk Assessment Map — county shading reflects FEMA NRI relative risk categories for Heat Wave.
+          </p>
+
+          <details aria-label="Accessible heat wave data table and download">
+            <summary>Accessible data table and download (Heat Wave)</summary>
+            <div style="margin-top:10px;">
+              <p class="note" style="margin-top:0;">
+                This table provides the text equivalent of the map categories and includes a downloadable XLSX for accessibility and reuse.
+              </p>
+
+              <table aria-label="Heat Wave risk category by county">
+                <caption>Heat Wave — Risk Category by County</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Risk Category</th>
+                    <th scope="col">Counties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Relatively High</th>
+                    <td>Baltimore; Baltimore City; Montgomery; Prince George’s</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Moderate</th>
+                    <td>Anne Arundel; Frederick; Talbot; Carroll; Cecil; Charles; Harford; Howard</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Relatively Low</th>
+                    <td>Allegany; Caroline; Dorchester; St. Mary’s; Washington; Wicomico; Calvert; Kent; Queen Anne’s; Worcester</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Very Low</th>
+                    <td>Garrett; Somerset</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="note">
+                Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/adb23f108c0b4ecc8041f9fa1d9b8a91/data">Extreme temperature risk tables by county</a>
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Tier Explanation -->
+      <div class="section">
+        <p class="kicker">Risk Tiers</p>
+        <h3>Heat Wave tier interpretation</h3>
+        <div class="grid cols-3" aria-label="Heat Wave county risk tiers">
+          <div class="tier hi">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively High</p>
+              <h4>Highest modeled heat-wave risk in the most exposed population centers</h4>
+              <ul>
+                <li>Baltimore</li>
+                <li>Baltimore City</li>
+                <li>Montgomery</li>
+                <li>Prince George’s</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier mod">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Relatively Moderate</p>
+              <h4>Counties with meaningful heat exposure and notable population sensitivity</h4>
+              <ul>
+                <li>Anne Arundel</li>
+                <li>Frederick</li>
+                <li>Talbot</li>
+                <li>Carroll</li>
+                <li>Cecil</li>
+                <li>Charles</li>
+                <li>Harford</li>
+                <li>Howard</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier low">
+            <div class="bar"></div>
+            <div class="body">
+              <p class="label">Lower Risk Pattern</p>
+              <h4>Lower modeled losses in less heat-intense counties</h4>
+              <p class="muted" style="margin:0 0 8px;">
+                <strong>Relatively Low:</strong> Allegany, Caroline, Dorchester, St. Mary’s, Washington, Wicomico, Calvert, Kent, Queen Anne’s, Worcester
+              </p>
+              <p class="muted" style="margin:0;">
+                <strong>Very Low:</strong> Garrett, Somerset
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Narrative -->
+    <div class="section">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p>
+            <strong>Cold Wave:</strong> Cold wave risk in Maryland reflects modeled losses associated with extreme
+            cold exposure to people, buildings, agriculture, and infrastructure. In the county table,
+            Baltimore, Baltimore City, and Montgomery are categorized as relatively high. Wicomico, Worcester,
+            Anne Arundel, Carroll, Cecil, Harford, Howard, and Prince George’s are categorized as relatively
+            moderate. Allegany, Caroline, Garrett, Somerset, St. Mary’s, Talbot, Washington, Frederick, Calvert,
+            Charles, Dorchester, Kent, and Queen Anne’s are categorized as relatively low.
+          </p>
+
+          <p>
+            <strong>Heat Wave:</strong> Heat wave risk in Maryland is shaped primarily by population exposure and
+            the concentration of people and services in developed areas. In the county table, Baltimore,
+            Baltimore City, Montgomery, and Prince George’s are categorized as relatively high. Anne Arundel,
+            Frederick, Talbot, Carroll, Cecil, Charles, Harford, and Howard are categorized as relatively moderate.
+            Allegany, Caroline, Dorchester, St. Mary’s, Washington, Wicomico, Calvert, Kent, Queen Anne’s, and
+            Worcester are categorized as relatively low, while Garrett and Somerset are categorized as very low.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland county table. Metrics shown include Cold Wave
+            (<strong>CWAV_*</strong>) and Heat Wave (<strong>HWAV_*</strong>) Expected Annual Loss totals and
+            component fields, along with county relative risk ratings.
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,351 @@
+<section id="tr-tornado" aria-label="Tornado risk summary">
+  <style>
+    #tr-tornado{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
+    #tr-tornado .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 56px;}
+
+    /* Hero */
+    #tr-tornado .hero{
+      border:1px solid rgba(15,23,42,.12);
+      border-radius:18px;
+      padding:22px 22px 16px;
+      background:
+        linear-gradient(180deg, rgba(71,85,105,.12), rgba(255,255,255,0)),
+        linear-gradient(90deg, rgba(179,18,23,.04), rgba(255,255,255,0));
+    }
+    #tr-tornado h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em;line-height:1.15;}
+    #tr-tornado h2{margin:0 0 10px;font-size:22px;letter-spacing:-.01em;}
+    #tr-tornado h3{margin:0 0 10px;font-size:18px;letter-spacing:-.01em;}
+    #tr-tornado .lede{margin:0;max-width:95ch;line-height:1.65;color:rgba(31,41,55,.85);}
+
+    #tr-tornado .pillbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    #tr-tornado .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(15,23,42,.12);
+      background:rgba(255,255,255,.75);
+      text-decoration:none;color:inherit;font-size:14px;
+    }
+
+    #tr-tornado .section{margin-top:16px;}
+    #tr-tornado .grid{display:grid;gap:14px;}
+    @media (min-width: 860px){
+      #tr-tornado .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+      #tr-tornado .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+      #tr-tornado .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+      #tr-tornado .grid.cols-5{grid-template-columns:repeat(5,1fr);}
+    }
+
+    #tr-tornado .card{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.92);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #tr-tornado .kicker{
+      margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+      color:rgba(31,41,55,.65);
+    }
+    #tr-tornado .stat{font-size:22px;font-weight:800;margin:0 0 4px;}
+    #tr-tornado .statlabel{font-size:13px;color:rgba(31,41,55,.72);margin:0;}
+    #tr-tornado .note{font-size:12px;color:rgba(31,41,55,.68);margin-top:10px;line-height:1.45;}
+    #tr-tornado .muted{color:rgba(31,41,55,.72);}
+
+    /* Key impacts */
+    #tr-tornado .impact-list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.6;
+    }
+    #tr-tornado .impact-list li{margin:6px 0;}
+
+    /* Map container */
+    #tr-tornado .mapbox{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.92);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    #tr-tornado img{width:100%;border-radius:14px;display:block;height:auto;}
+
+    /* Tier cards */
+    #tr-tornado .tier{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.92);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    #tr-tornado .tier .bar{height:4px;}
+    #tr-tornado .tier .body{padding:14px 16px;}
+    #tr-tornado .tier .label{
+      font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+      color:rgba(31,41,55,.70);margin:0 0 6px;
+    }
+    #tr-tornado .tier ul{margin:0;padding-left:18px;line-height:1.55;}
+    #tr-tornado .tier li{margin:3px 0;}
+
+    /* Tier colors tied to map tiers */
+    #tr-tornado .hi .bar{background:#ef4444;}
+    #tr-tornado .mod .bar{background:#fb923c;}
+    #tr-tornado .low .bar{background:#fbbf24;}
+    #tr-tornado .vlow .bar{background:#fde68a;}
+
+    /* Details */
+    #tr-tornado details{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.92);
+      margin-top:12px;
+    }
+    #tr-tornado summary{cursor:pointer;font-weight:800;}
+
+    /* Screen reader-only */
+    #tr-tornado .sr-only{
+      position:absolute !important;
+      width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
+
+    /* Accessible table */
+    #tr-tornado table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    #tr-tornado caption{
+      text-align:left;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    #tr-tornado th, #tr-tornado td{
+      border:1px solid rgba(15,23,42,.12);
+      padding:10px 10px;
+      vertical-align:top;
+    }
+    #tr-tornado th{
+      background:rgba(248,250,252,.9);
+      text-align:left;
+    }
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="kicker">Tornado</p>
+      <h1>Tornado Risk Across Maryland</h1>
+      <p class="lede">
+        Tornado risk in Maryland reflects exposure, vulnerability, and historical event patterns. This page summarizes statewide modeled annualized impacts
+        and the county-level relative risk pattern shown in the FEMA National Risk Index tornado map.
+      </p>
+
+      <div class="pillbar" aria-label="Jump links">
+        <a class="pill" href="#tr-metrics">Annual loss estimates</a>
+        <a class="pill" href="#tr-impacts">Key impacts</a>
+        <a class="pill" href="#tr-map">Map + accessible table</a>
+        <a class="pill" href="#tr-tiers">Risk tiers</a>
+        <a class="pill" href="#tr-full-text">Full narrative</a>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div id="tr-metrics" class="section">
+      <div class="card">
+        <p class="kicker">Estimated Annual Loss</p>
+        <h2>Annualized impacts for Tornado <span class="muted">(TRND)</span></h2>
+
+        <div class="grid cols-5" style="margin-top:12px;">
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$53.81M</p>
+            <p class="statlabel">Total Estimated Annual Loss (EAL)</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$23.03M</p>
+            <p class="statlabel">Building Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$30.75M</p>
+            <p class="statlabel">Population Equivalence Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">$33.5K</p>
+            <p class="statlabel">Agriculture Value EAL</p>
+          </div>
+          <div class="card" style="box-shadow:none;">
+            <p class="stat">8,786.55</p>
+            <p class="statlabel">Exposure Area (sq. miles)</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Data source: FEMA National Risk Index (NRI), Maryland totals table. Fields:
+          <strong>TRND_EALT</strong>, <strong>TRND_EALB</strong>, <strong>TRND_EALPE</strong>, <strong>TRND_EALA</strong>, <strong>TRND_EXP_AREA</strong>.
+          Event Count (<strong>TRND_EVNTS</strong>) = 342.
+        </p>
+      </div>
+    </div>
+
+    <!-- KEY IMPACTS -->
+    <div id="tr-impacts" class="section card" aria-label="Tornado key impacts">
+      <p class="kicker">Key Impacts</p>
+      <h2>How tornadoes affect Maryland communities</h2>
+      <ul class="impact-list">
+        <li>Tornadoes can cause roof and wall failures, broken windows, and severe localized damage along narrow paths.</li>
+        <li>Downed lines and damaged equipment can disrupt power, communications, and critical facility operations.</li>
+        <li>Fallen trees and wind-borne debris can block roads, delay emergency response, and increase cleanup and restoration costs.</li>
+        <li>Public safety risks increase where population density is high or sheltering options are limited during fast-moving severe weather.</li>
+        <li>Even short-duration tornado events can produce concentrated damage to homes, businesses, vehicles, and community facilities.</li>
+      </ul>
+    </div>
+
+    <!-- MAP + ADA TABLE -->
+    <div id="tr-map" class="section">
+      <div class="mapbox">
+        <img
+          src="https://sp-d.maps.arcgis.com/sharing/rest/content/items/af1bc64f7c9a4d609909c35fac994289/data"
+          alt="Maryland county map showing Tornado risk categories. Relatively High: Baltimore City, Prince George’s. Relatively Moderate: Baltimore, Anne Arundel, Frederick, Montgomery. Relatively Low: Allegany, Washington, Carroll, Howard, Harford, Cecil, Queen Anne’s, Talbot, Dorchester, Wicomico, Charles, St. Mary’s. Very Low: Garrett, Kent, Caroline, Calvert, Somerset, Worcester."
+          aria-describedby="tr-map-desc"
+          loading="lazy"
+        >
+
+        <div id="tr-map-desc" class="sr-only">
+          Tornado Risk by County (text alternative).
+          Relatively High: Baltimore City, Prince George’s.
+          Relatively Moderate: Baltimore, Anne Arundel, Frederick, Montgomery.
+          Relatively Low: Allegany, Washington, Carroll, Howard, Harford, Cecil, Queen Anne’s, Talbot, Dorchester, Wicomico, Charles, St. Mary’s.
+          Very Low: Garrett, Kent, Caroline, Calvert, Somerset, Worcester.
+        </div>
+
+        <p class="note">
+          Tornado Risk Assessment Map — County shading reflects FEMA NRI relative risk categories for Tornado (TRND_RISKR).
+        </p>
+
+        <details aria-label="Accessible Tornado data table and download">
+          <summary>Accessible data table and download (Tornado)</summary>
+          <div style="margin-top:10px;">
+            <p class="note" style="margin-top:0;">
+              This table is the text equivalent of the map categories (not color-dependent). A downloadable XLSX is provided for assistive technology and reuse.
+            </p>
+
+            <table aria-label="Tornado risk category by county">
+              <caption>Tornado (TRND_RISKR) — Risk Category by County</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Risk Category</th>
+                  <th scope="col">Counties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Relatively High</th>
+                  <td>Baltimore City; Prince George’s</td>
+                </tr>
+                <tr>
+                  <th scope="row">Relatively Moderate</th>
+                  <td>Baltimore; Anne Arundel; Frederick; Montgomery</td>
+                </tr>
+                <tr>
+                  <th scope="row">Relatively Low</th>
+                  <td>Allegany; Washington; Carroll; Howard; Harford; Cecil; Queen Anne’s; Talbot; Dorchester; Wicomico; Charles; St. Mary’s</td>
+                </tr>
+                <tr>
+                  <th scope="row">Very Low</th>
+                  <td>Garrett; Kent; Caroline; Calvert; Somerset; Worcester</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="note">
+              Download (XLSX): <a href="https://sp-d.maps.arcgis.com/sharing/rest/content/items/a73aae95c04b4f1cb38fa45f99526496/data">Tornado risk tables by county</a>
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- TIERS -->
+    <div id="tr-tiers" class="section grid cols-3" aria-label="Tornado county risk tiers">
+      <div class="tier hi">
+        <div class="bar"></div>
+        <div class="body">
+          <p class="label">Relatively High</p>
+          <h3>Highest modeled tornado risk in Maryland’s most exposed urban areas</h3>
+          <ul>
+            <li>Baltimore City</li>
+            <li>Prince George’s</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tier mod">
+        <div class="bar"></div>
+        <div class="body">
+          <p class="label">Relatively Moderate</p>
+          <h3>Elevated risk where development and exposure remain substantial</h3>
+          <ul>
+            <li>Baltimore</li>
+            <li>Anne Arundel</li>
+            <li>Frederick</li>
+            <li>Montgomery</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tier low">
+        <div class="bar"></div>
+        <div class="body">
+          <p class="label">Relatively Low / Very Low</p>
+          <h3>Lower modeled losses outside the most exposed corridors</h3>
+          <p class="muted" style="margin:0 0 8px;">
+            <strong>Relatively Low:</strong> Allegany, Washington, Carroll, Howard, Harford, Cecil, Queen Anne’s, Talbot, Dorchester, Wicomico, Charles, St. Mary’s
+          </p>
+          <p class="muted" style="margin:0;">
+            <strong>Very Low:</strong> Garrett, Kent, Caroline, Calvert, Somerset, Worcester
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL NARRATIVE -->
+    <div id="tr-full-text" class="section" aria-label="Full narrative">
+      <details>
+        <summary>Read the full narrative text (technical detail)</summary>
+        <div style="margin-top:10px;">
+          <p class="note" style="margin-top:0;">
+            FEMA-aligned framing: NRI metrics represent modeled annualized estimates derived from hazard probability, exposure, and loss ratios.
+          </p>
+
+          <p>
+            <strong>Tornado:</strong> The highest relative tornado risk in Maryland is concentrated in Baltimore City and Prince George’s County,
+            where dense development and large concentrations of people and structures increase modeled annualized losses.
+          </p>
+
+          <p>
+            Baltimore, Anne Arundel, Frederick, and Montgomery counties are categorized as relatively moderate in the current NRI map pattern,
+            reflecting substantial exposure with somewhat lower modeled relative risk than the highest category.
+          </p>
+
+          <p>
+            Much of the rest of the state is categorized as relatively low or very low. These lower relative ratings do not indicate the absence of tornado risk,
+            but rather comparatively lower modeled losses on the NRI relative scale.
+          </p>
+
+          <p class="note">
+            Data source: FEMA National Risk Index (NRI), Maryland totals table and county relative risk categories.
+            Metrics shown: Tornado (TRND_*) Expected Annual Loss totals and components and Tornado Risk Rating (TRND_RISKR).
+          </p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>
